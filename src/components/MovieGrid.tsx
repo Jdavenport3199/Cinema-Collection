@@ -16,12 +16,12 @@ export default function MovieGrid({
 }) {
   return (
     <>
-      <div className="content-container">
+      <div className="content-container" style={{ width: "90%" }}>
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: ".4rem",
+            gap: ".8rem",
             justifyContent: "center",
           }}
         >
@@ -31,11 +31,11 @@ export default function MovieGrid({
                 <div
                   key={index}
                   style={{
-                    border: "1px solid rgba(255, 255, 255, 0.06)",
+                    border: "1px solid rgba(255, 255, 255, 0.25)",
                     display: "flex",
                     flexDirection: "column",
                     width: "200px",
-                    background: "rgba(255, 255, 255, 0.06)",
+                    background: "rgba(255, 255, 255, 0.125)",
                     boxShadow: "0em .2em .8em rgba(0, 0, 0, 0.25)",
                     cursor: "pointer",
                   }}

@@ -21,20 +21,14 @@ export default function Movie({
         movieActors: string;
         movieAwards: string;
         moviePoster: string;
+        movieBoxoffice: string;
+        movieMetascore: string;
       }
     | undefined;
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
 }) {
   return (
     <>
-      <button
-        onClick={() => {
-          changeDisplay("movieGrid");
-        }}
-        style={{ paddingLeft: ".7rem", paddingRight: ".7rem" }}
-      >
-        <img src="/home.svg" />
-      </button>
       <div className="content-container">
         {singleMovie && (
           <div className="content">
@@ -100,9 +94,9 @@ export default function Movie({
                         key={index}
                         style={{
                           color: "#ffffff",
-                          background: "rgba(255, 255, 255, 0.06)",
+                          background: "rgba(255, 255, 255, 0.125)",
                           borderRadius: "100px",
-                          border: "1px solid rgba(255, 255, 255, 0.06)",
+                          border: "1px solid rgba(255, 255, 255, 0.25)",
                           width: "fit-content",
                           padding: ".4rem",
                           paddingLeft: ".8rem",
@@ -117,19 +111,22 @@ export default function Movie({
                 )}
               </div>
               <hr />
-              <span>DIRECTOR</span>
-              <p>&ensp;{singleMovie.movieDirector}</p>
+              <span style={{ fontWeight: 600 }}>DIRECTOR</span>
+              <p>&emsp;{singleMovie.movieDirector}</p>
               <hr />
-              <span>WRITERS</span>
-              <p>&ensp;{singleMovie.movieWriter}</p>
+              <span style={{ fontWeight: 600 }}>WRITERS</span>
+              <p>&emsp;{singleMovie.movieWriter}</p>
               <hr />
-              <span>ACTORS</span>
-              <p>&ensp;{singleMovie.movieActors}</p>
+              <span style={{ fontWeight: 600 }}>ACTORS</span>
+              <p>&emsp;{singleMovie.movieActors}</p>
+              <hr />
+              <span style={{ fontWeight: 600 }}>AWARDS</span>
+              <p>&emsp;{singleMovie.movieAwards}</p>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "right",
-                  marginTop: "1rem",
+                  marginTop: ".4rem",
                 }}
               >
                 <button>

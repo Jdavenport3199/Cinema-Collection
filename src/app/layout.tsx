@@ -5,8 +5,9 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Discover | Cinema Collection",
-  description: "Discover Fresh Films, Curated by Your Favorite Genres.",
+  title:
+    "Cinema Collection | Discover Fresh Films, Curated by Your Favorite Genres",
+  description: "Discover Fresh Films, Curated by Your Favorite Genres",
 };
 
 export default function RootLayout({
