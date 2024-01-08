@@ -15,7 +15,7 @@ export default function Movie({
         movieRating: string;
         movieVotes: string;
         moviePlot: string;
-        movieGenre: string[];
+        // movieGenre: string[];
         movieDirector: string;
         movieWriter: string;
         movieActors: string;
@@ -87,7 +87,7 @@ export default function Movie({
                   marginBottom: "1.4rem",
                 }}
               >
-                {singleMovie.movieGenre.map(
+                {/* {singleMovie.movieGenre.map(
                   (genre, index) =>
                     genre && (
                       <span
@@ -108,7 +108,7 @@ export default function Movie({
                         {genre}
                       </span>
                     )
-                )}
+                )} */}
               </div>
               <hr />
               <span style={{ fontWeight: 600 }}>DIRECTOR</span>

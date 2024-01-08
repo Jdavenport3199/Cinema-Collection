@@ -3,7 +3,7 @@ export async function POST(request: Request) {
     const res = await request.json();
 
     const genre_key = await fetch(
-      `https://api.themoviedb.org/3/discover/movie?api_key=4df29563fef1ac0f15e35abe376b0042&with_genres=${res.mainGenre},${res.subGenre1},${res.subGenre1}`
+      `https://api.themoviedb.org/3/discover/movie?api_key=4df29563fef1ac0f15e35abe376b0042&with_genres=${res.mainGenre},${res.subGenre1},${res.subGenre2}&page=${res.page}`
     );
     const genre_data = await genre_key.json();
 
@@ -13,10 +13,8 @@ export async function POST(request: Request) {
           Math.floor(Math.random() * genre_data.results.length)
         ].original_title
       }`
-      // `https://www.omdbapi.com/?i=tt3896198&apikey=ed6233cd&t=dunkirk`
     );
     const movie_data = await movie_key.json();
-    console.log(movie_data);
 
     return Response.json(
       {
@@ -30,3 +28,9 @@ export async function POST(request: Request) {
     return Response.json({ message: "error" }, { status: 500 });
   }
 }
+
+// SIMILAR
+// `https://api.themoviedb.org/3/movie/${res.title}/similar?api_key=4df29563fef1ac0f15e35abe376b0042`
+
+// TITLE
+// https://www.omdbapi.com/?i=tt3896198&apikey=ed6233cd&t=dunkirk

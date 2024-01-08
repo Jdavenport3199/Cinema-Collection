@@ -1,27 +1,27 @@
 import { Dispatch, SetStateAction } from "react";
 
-export default function MovieGrid({
+export default function TrendingMovieGrid({
   movieData,
   changeDisplay,
   movieDetails,
 }: {
   movieData: Array<{
-    movieID: string;
-    movieTitle: string;
-    movieRating: string;
     moviePoster: string;
   } | null>;
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
   movieDetails: Dispatch<SetStateAction<number | null>>;
 }) {
-  const maxMoviesToShow = 11;
+  const maxMoviesToShow = 8;
 
   return (
     <>
-      <div className="content-container" style={{ flexDirection: "column" }}>
+      <div
+        className="content-container"
+        style={{ flexDirection: "column", width: "100%", marginTop: "8rem" }}
+      >
         <div>
           <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
-            More like this
+            Trending Films
           </span>
         </div>
         <div
