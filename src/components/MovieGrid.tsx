@@ -5,12 +5,7 @@ export default function MovieGrid({
   changeDisplay,
   movieDetails,
 }: {
-  movieData: Array<{
-    movieID: string;
-    movieTitle: string;
-    movieRating: string;
-    moviePoster: string;
-  } | null>;
+  movieData: any | null;
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
   movieDetails: Dispatch<SetStateAction<number | null>>;
 }) {
@@ -25,7 +20,7 @@ export default function MovieGrid({
             justifyContent: "center",
           }}
         >
-          {movieData.map((movie, index) => (
+          {movieData.map((movie: any, index: number) => (
             <>
               {movie !== null && (
                 <div
@@ -80,11 +75,11 @@ export default function MovieGrid({
                         &nbsp;{movie.movieRating}
                       </span>
                     </div>
-                    <p style={{ display: "block" }}>
+                    {/* <p style={{ display: "block" }}>
                       {movie.movieTitle.length >= 18
                         ? movie.movieTitle.substring(0, 18) + "..."
                         : movie.movieTitle}
-                    </p>
+                    </p> */}
                   </div>
                 </div>
               )}
