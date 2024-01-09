@@ -81,7 +81,7 @@ export default function MovieGrid({
                       </span>
                     </div>
                     <p style={{ display: "block" }}>
-                      {movie.movieTitle.length >= 18
+                      {movie?.movieTitle?.length >= 18
                         ? movie.movieTitle.substring(0, 18) + "..."
                         : movie.movieTitle}
                     </p>

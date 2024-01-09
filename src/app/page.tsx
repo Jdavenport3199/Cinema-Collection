@@ -16,7 +16,7 @@ export default function Home() {
       movieRating: string;
       movieVotes: string;
       moviePlot: string;
-      // movieGenre: string[];
+      movieGenre: string[];
       movieDirector: string;
       movieWriter: string;
       movieActors: string;
@@ -57,121 +57,51 @@ export default function Home() {
     });
 
     try {
-      await response.json();
-      const moviesAdded: string[] = [];
+      const responseData = await response.json();
 
-      const additionalMovies = await Promise.all(
-        [...Array(16)].map(async () => {
-          const response: any = await fetch("/api/movieSearch", {
-            method: "POST",
-            body: JSON.stringify({
-              mainGenre: genre,
-              subGenre1: subgenre1,
-              subGenre2: subgenre2,
-              page: page,
-            }),
-          });
+      // const moviesArray: string[] = [];
+      let genreArray: any[] = [];
 
-          const data = await response.json();
-          // const genreArray = data.data.Genre.split(",").map((genre: string) =>
-          //   genre.trim()
-          // );
+      // if (
+      //   !moviesArray.includes(responseData.data.Title) &&
+      //   responseData.data.Response === "True" &&
+      //   responseData.data.Poster !== "N/A"
+      // ) {
+      //   moviesArray.push(responseData.data.Title);
+      //   genreArray = responseData.data.Genre.split(",").map((genre: string) =>
+      //     genre.trim()
+      //   );
 
-          if (
-            !moviesAdded.includes(data.data.Title) &&
-            data.data.Response === "True" &&
-            data.data.Poster !== "N/A"
-          ) {
-            moviesAdded.push(data.data.Title);
+      const moviesTest = responseData.data.map((x: any) => {
+        return {
+          movieID: x.imdbID,
+          movieTitle: x.Title,
+          movieYear: x.Year,
+          movieRated: x.Rated,
+          movieRuntime: x.Runtime,
+          movieRating: x.imdbRating,
+          movieVotes: x.imdbVotes,
+          moviePlot: x.Plot,
+          movieGenre: genreArray,
+          movieDirector: x.Director,
+          movieWriter: x.Writer,
+          movieActors: x.Actors,
+          movieAwards: x.Awards,
+          moviePoster: x.Poster,
+          movieBoxoffice: x.BoxOffice,
+          movieMetascore: x.Metascore,
+        };
+      });
 
-            return {
-              movieID: data.data.imdbID,
-              movieTitle: data.data.Title,
-              movieYear: data.data.Year,
-              movieRated: data.data.Rated,
-              movieRuntime: data.data.Runtime,
-              movieRating: data.data.imdbRating,
-              movieVotes: data.data.imdbVotes,
-              moviePlot: data.data.Plot,
-              // movieGenre: genreArray,
-              movieDirector: data.data.Director,
-              movieWriter: data.data.Writer,
-              movieActors: data.data.Actors,
-              movieAwards: data.data.Awards,
-              moviePoster: data.data.Poster,
-              movieBoxoffice: data.data.BoxOffice,
-              movieMetascore: data.data.Metascore,
-            };
-          } else {
-            return null;
-          }
-        })
-      );
-
-      setMovies(additionalMovies);
+      setMovies(moviesTest);
+      // } else {
+      //   console.log("IF STATEMENT")
+      //   return null;
+      // }
     } catch (error) {
       console.error("Error in form submission:", error);
     }
   }
-
-  // async function loadTrendingGrid() {
-  //   const trending = await fetch("/api/movieTrending", {
-  //     method: "POST",
-  //     body: JSON.stringify({
-  //     }),
-  //   });
-
-  //   try {
-  //     await trending.json();
-  //     const moviesAdded: string[] = [];
-
-  //     const additionalMovies = await Promise.all(
-  //       [...Array(8)].map(async () => {
-  //         const trending: any = await fetch("/api/movieTrending", {
-  //           method: "POST",
-  //           body: JSON.stringify({
-  //           }),
-  //         });
-
-  //         const data = await trending.json();
-  //         console.log("MOVIES ADDED: " + moviesAdded);
-
-  //         if (
-  //           !moviesAdded.includes(data.data.Title) &&
-  //           data.data.Response === "True" &&
-  //           data.data.Poster !== "N/A"
-  //         ) {
-  //           moviesAdded.push(data.data.Title);
-  //           console.log("MOVIES ADDED:" + moviesAdded);
-  //           return {
-  //             movieID: data.data.imdbID,
-  //             movieTitle: data.data.Title,
-  //             movieYear: data.data.Year,
-  //             movieRated: data.data.Rated,
-  //             movieRuntime: data.data.Runtime,
-  //             movieRating: data.data.imdbRating,
-  //             movieVotes: data.data.imdbVotes,
-  //             moviePlot: data.data.Plot,
-  //             // movieGenre: genreArray,
-  //             movieDirector: data.data.Director,
-  //             movieWriter: data.data.Writer,
-  //             movieActors: data.data.Actors,
-  //             movieAwards: data.data.Awards,
-  //             moviePoster: data.data.Poster,
-  //             movieBoxoffice: data.data.BoxOffice,
-  //             movieMetascore: data.data.Metascore,
-  //           };
-  //         } else {
-  //           return null;
-  //         }
-  //       })
-  //     );
-
-  //     setMovies(additionalMovies);
-  //   } catch (error) {
-  //     console.error("Error in form submission:", error);
-  //   }
-  // }
 
   async function loadTrendingGrid() {
     try {

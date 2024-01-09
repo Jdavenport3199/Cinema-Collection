@@ -14,7 +14,7 @@ export default function MovieGrid({
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
   movieDetails: Dispatch<SetStateAction<number | null>>;
 }) {
-  const maxMoviesToShow = 11;
+  const maxMoviesToShow = 9;
 
   return (
     <>
