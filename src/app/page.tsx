@@ -140,136 +140,6 @@ export default function Home() {
       <main>
         {currentDisplay === null && (
           <>
-            <div className="content-container">
-              <div
-                className="content"
-                style={{
-                  textAlign: "center",
-                  marginTop: "15%",
-                  display: "block",
-                }}
-              >
-                <h1 style={{ fontSize: "64px", lineHeight: 1.2 }}>
-                  Cinema Collection
-                </h1>
-                <span style={{ fontSize: "16px" }}>
-                  Discover Fresh Films, Curated by Your Favorite Genres
-                </span>
-
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "center",
-                    marginTop: "2rem",
-                  }}
-                >
-                  <form
-                    onSubmit={(e) => {
-                      loadMovieGrid(e);
-                      setCurrentDisplay("movieGrid");
-                    }}
-                  >
-                    <select
-                      name="genre"
-                      value={genre}
-                      onChange={(e) => setGenre(e.target.value)}
-                      defaultValue=""
-                    >
-                      <option value="" disabled hidden>
-                        *Genre
-                      </option>
-                      <option value="28">Action</option>
-                      <option value="12">Adventure</option>
-                      <option value="35">Comedy</option>
-                      <option value="80">Crime</option>
-                      <option value="99">Documentary</option>
-                      <option value="18">Drama</option>
-                      <option value="10751">Family</option>
-                      <option value="14">Fantasy</option>
-                      <option value="36">History</option>
-                      <option value="27">Horror</option>
-                      <option value="10402">Music</option>
-                      <option value="9648">Mystery</option>
-                      <option value="10749">Romance</option>
-                      <option value="878">Science Fiction</option>
-                      <option value="53">Thriller</option>
-                      <option value="10752">War</option>
-                      <option value="37">Western</option>
-                    </select>
-
-                    <select
-                      name="subgenre1"
-                      value={subgenre1}
-                      onChange={(e) => setSubgenre1(e.target.value)}
-                      defaultValue=""
-                    >
-                      <option value="" disabled hidden>
-                        *Genre
-                      </option>
-                      <option value="28">Action</option>
-                      <option value="12">Adventure</option>
-                      <option value="35">Comedy</option>
-                      <option value="80">Crime</option>
-                      <option value="99">Documentary</option>
-                      <option value="18">Drama</option>
-                      <option value="10751">Family</option>
-                      <option value="14">Fantasy</option>
-                      <option value="36">History</option>
-                      <option value="27">Horror</option>
-                      <option value="10402">Music</option>
-                      <option value="9648">Mystery</option>
-                      <option value="10749">Romance</option>
-                      <option value="878">Science Fiction</option>
-                      <option value="53">Thriller</option>
-                      <option value="10752">War</option>
-                      <option value="37">Western</option>
-                    </select>
-
-                    <select
-                      name="subgenre2"
-                      value={subgenre2}
-                      onChange={(e) => setSubgenre2(e.target.value)}
-                      defaultValue=""
-                    >
-                      <option value="" disabled hidden>
-                        *Genre
-                      </option>
-                      <option value="28">Action</option>
-                      <option value="12">Adventure</option>
-                      <option value="35">Comedy</option>
-                      <option value="80">Crime</option>
-                      <option value="99">Documentary</option>
-                      <option value="18">Drama</option>
-                      <option value="10751">Family</option>
-                      <option value="14">Fantasy</option>
-                      <option value="36">History</option>
-                      <option value="27">Horror</option>
-                      <option value="10402">Music</option>
-                      <option value="9648">Mystery</option>
-                      <option value="10749">Romance</option>
-                      <option value="878">Science Fiction</option>
-                      <option value="53">Thriller</option>
-                      <option value="10752">War</option>
-                      <option value="37">Western</option>
-                    </select>
-                    <button type="submit" style={{ width: "28%" }}>
-                      <img src="/search.svg" />
-                    </button>
-                  </form>
-                </div>
-
-                <TrendingMovieGrid
-                  movieData={moviesTrending}
-                  changeDisplay={setCurrentDisplay}
-                  movieDetails={setMovieDetailsIndex}
-                />
-              </div>
-            </div>
-          </>
-        )}
-
-        {currentDisplay === "movieGrid" && (
-          <>
             <div className="form-holder">
               <form
                 onSubmit={(e) => {
@@ -284,7 +154,7 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -312,7 +182,7 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -340,7 +210,129 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
+                  </option>
+                  <option value="28">Action</option>
+                  <option value="12">Adventure</option>
+                  <option value="35">Comedy</option>
+                  <option value="80">Crime</option>
+                  <option value="99">Documentary</option>
+                  <option value="18">Drama</option>
+                  <option value="10751">Family</option>
+                  <option value="14">Fantasy</option>
+                  <option value="36">History</option>
+                  <option value="27">Horror</option>
+                  <option value="10402">Music</option>
+                  <option value="9648">Mystery</option>
+                  <option value="10749">Romance</option>
+                  <option value="878">Science Fiction</option>
+                  <option value="53">Thriller</option>
+                  <option value="10752">War</option>
+                  <option value="37">Western</option>
+                </select>
+                <button type="submit" style={{ width: "28%" }}>
+                  <img src="/search.svg" />
+                </button>
+              </form>
+            </div>
+
+            <div className="content-container">
+              <div
+                className="content"
+                style={{
+                  textAlign: "left",
+                  marginTop: "15%",
+                  display: "block",
+                }}
+              >
+                <h1 style={{ lineHeight: 1.2 }}>Cinema Collection</h1>
+                <span style={{ fontSize: "18px" }}>
+                  Discover Fresh Films, Curated by Your Favorite Genres
+                </span>
+
+                <TrendingMovieGrid
+                  movieData={moviesTrending}
+                  changeDisplay={setCurrentDisplay}
+                  movieDetails={setMovieDetailsIndex}
+                />
+              </div>
+            </div>
+          </>
+        )}
+
+        {currentDisplay === "movieGrid" && (
+          <>
+            <div className="form-holder">
+              <form
+                onSubmit={(e) => {
+                  loadMovieGrid(e);
+                  setCurrentDisplay("movieGrid");
+                }}
+              >
+                <select
+                  name="genre"
+                  value={genre}
+                  onChange={(e) => setGenre(e.target.value)}
+                  defaultValue=""
+                >
+                  <option value="" disabled hidden>
+                    Genre
+                  </option>
+                  <option value="28">Action</option>
+                  <option value="12">Adventure</option>
+                  <option value="35">Comedy</option>
+                  <option value="80">Crime</option>
+                  <option value="99">Documentary</option>
+                  <option value="18">Drama</option>
+                  <option value="10751">Family</option>
+                  <option value="14">Fantasy</option>
+                  <option value="36">History</option>
+                  <option value="27">Horror</option>
+                  <option value="10402">Music</option>
+                  <option value="9648">Mystery</option>
+                  <option value="10749">Romance</option>
+                  <option value="878">Science Fiction</option>
+                  <option value="53">Thriller</option>
+                  <option value="10752">War</option>
+                  <option value="37">Western</option>
+                </select>
+
+                <select
+                  name="subgenre1"
+                  value={subgenre1}
+                  onChange={(e) => setSubgenre1(e.target.value)}
+                  defaultValue=""
+                >
+                  <option value="" disabled hidden>
+                    Genre
+                  </option>
+                  <option value="28">Action</option>
+                  <option value="12">Adventure</option>
+                  <option value="35">Comedy</option>
+                  <option value="80">Crime</option>
+                  <option value="99">Documentary</option>
+                  <option value="18">Drama</option>
+                  <option value="10751">Family</option>
+                  <option value="14">Fantasy</option>
+                  <option value="36">History</option>
+                  <option value="27">Horror</option>
+                  <option value="10402">Music</option>
+                  <option value="9648">Mystery</option>
+                  <option value="10749">Romance</option>
+                  <option value="878">Science Fiction</option>
+                  <option value="53">Thriller</option>
+                  <option value="10752">War</option>
+                  <option value="37">Western</option>
+                </select>
+
+                <select
+                  name="subgenre2"
+                  value={subgenre2}
+                  onChange={(e) => setSubgenre2(e.target.value)}
+                  defaultValue=""
+                >
+                  <option value="" disabled hidden>
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -372,6 +364,12 @@ export default function Home() {
               </form>
             </div>
 
+            <span style={{ marginTop: "1rem", textAlign: "center" }}>
+              Press&ensp;
+              <img src="/search.svg" />
+              &ensp;for New Movies
+            </span>
+
             <MovieGrid
               movieData={movies}
               changeDisplay={setCurrentDisplay}
@@ -396,7 +394,7 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -424,7 +422,7 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -452,7 +450,7 @@ export default function Home() {
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
-                    *Genre
+                    Genre
                   </option>
                   <option value="28">Action</option>
                   <option value="12">Adventure</option>
@@ -478,20 +476,23 @@ export default function Home() {
                 >
                   <img src="/search.svg" />
                 </button>
-                <button
-                  onClick={() => {
-                    setCurrentDisplay("movieGrid");
-                  }}
-                  style={{
-                    paddingLeft: ".7rem",
-                    paddingRight: ".7rem",
-                    width: "28%",
-                  }}
-                >
-                  <img src="/home.svg" />
-                </button>
               </form>
             </div>
+
+            <span style={{ marginTop: "1rem", textAlign: "center" }}>
+              <button
+                onClick={() => {
+                  setCurrentDisplay("movieGrid");
+                }}
+                style={{
+                  paddingLeft: ".7rem",
+                  paddingRight: ".7rem",
+                }}
+              >
+                <img src="/home.svg" />
+              </button>
+              &ensp;View Previous Movies
+            </span>
 
             <Movie
               singleMovie={movies[movieDetailsIndex!]!}
@@ -510,11 +511,10 @@ export default function Home() {
       <div
         className="background"
         style={{
-          backgroundImage: `url('./background1.jpg')`,
-          // backgroundImage:
-          // movies?.length > 0
-          //     ? `url(${movies[0]?.moviePoster})`
-          //     : `url('./background1.jpg')`,
+          backgroundImage:
+            movies?.length > 0
+              ? `url(${movies[movieDetailsIndex!]?.moviePoster})`
+              : `url('./background1.jpg')`,
         }}
       ></div>
     </>

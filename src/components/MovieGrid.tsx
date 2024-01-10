@@ -16,7 +16,10 @@ export default function MovieGrid({
 }) {
   return (
     <>
-      <div className="content-container" style={{ width: "90%" }}>
+      <div
+        className="content-container"
+        style={{ width: "90%", marginTop: "3rem" }}
+      >
         <div
           style={{
             display: "flex",
@@ -28,43 +31,36 @@ export default function MovieGrid({
           {movieData.map((movie, index) => (
             <>
               {movie !== null && (
-                <div
-                  key={index}
-                  style={{
-                    border: "1px solid rgba(255, 255, 255, 0.25)",
-                    display: "flex",
-                    flexDirection: "column",
-                    width: "200px",
-                    background: "rgba(255, 255, 255, 0.125)",
-                    boxShadow: "0em .2em .8em rgba(0, 0, 0, 0.25)",
-                    cursor: "pointer",
-                  }}
-                  onClick={() => {
-                    movieDetails(index);
-                    changeDisplay("movie");
-                  }}
-                >
-                  <img
-                    src={movie.moviePoster}
-                    alt="Movie Poster"
-                    style={{
-                      maxWidth: "200px",
-                      height: "325px",
-                      objectFit: "cover",
-                    }}
-                  />
+                <div style={{ perspective: "100px" }}>
                   <div
+                    key={index}
+                    className="moviegrid-poster"
+                    onClick={() => {
+                      movieDetails(index);
+                      changeDisplay("movie");
+                    }}
+                  >
+                    <img
+                      src={movie.moviePoster}
+                      alt="Movie Poster"
+                      style={{
+                        maxWidth: "215px",
+                        height: "325px",
+                        objectFit: "cover",
+                        boxShadow: "0em .2em .8em rgba(0, 0, 0, 0.5)",
+                      }}
+                    />
+                    {/* <div
                     style={{
-                      padding: ".4rem",
+                      padding: ".8rem",
                       paddingTop: ".8rem",
-                      marginBottom: ".8rem",
                     }}
                   >
                     <div
                       style={{
                         display: "flex",
                         alignItems: "center",
-                        justifyContent: "left",
+                        justifyContent: "right",
                       }}
                     >
                       <span
@@ -85,6 +81,7 @@ export default function MovieGrid({
                         ? movie.movieTitle.substring(0, 18) + "..."
                         : movie.movieTitle}
                     </p>
+                  </div> */}
                   </div>
                 </div>
               )}

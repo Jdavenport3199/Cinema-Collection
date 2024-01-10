@@ -14,27 +14,25 @@ export default function MovieGrid({
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
   movieDetails: Dispatch<SetStateAction<number | null>>;
 }) {
-  const maxMoviesToShow = 9;
+  const maxMoviesToShow = 8;
 
   return (
     <>
       <div className="content-container" style={{ flexDirection: "column" }}>
-        <div>
-          <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
-            More like this
-          </span>
-        </div>
+        <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
+          &middot; Related Movies
+        </span>
+
         <div
           className="content"
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "1rem",
+            gap: ".4rem",
             margin: 0,
             justifyContent: "space-between",
           }}
         >
-          {/* {movieData.map((movie, index) => ( */}
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (
             <>
               {movie !== null && (
@@ -44,17 +42,8 @@ export default function MovieGrid({
                   }}
                 >
                   <div
-                    className="test"
+                    className="poster-extra"
                     key={index}
-                    style={{
-                      // border: "1px solid rgba(255, 255, 255, 0.25)",
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "125px",
-                      background: "rgba(255, 255, 255, 0.125)",
-                      // boxShadow: "0em .2em .8em rgba(0, 0, 0, 0.25)",
-                      cursor: "pointer",
-                    }}
                     onClick={() => {
                       movieDetails(index);
                       changeDisplay("movie");
@@ -64,8 +53,8 @@ export default function MovieGrid({
                       src={movie.moviePoster}
                       alt="Movie Poster"
                       style={{
-                        maxWidth: "125px",
-                        height: "190px",
+                        maxWidth: "156px",
+                        height: "237px",
                         objectFit: "cover",
                       }}
                     />

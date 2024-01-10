@@ -17,24 +17,23 @@ export default function TrendingMovieGrid({
     <>
       <div
         className="content-container"
-        style={{ flexDirection: "column", width: "100%", marginTop: "8rem" }}
+        style={{ flexDirection: "column", width: "100%", marginTop: "2rem" }}
       >
-        <div>
-          <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
+        {/* <div style={{ display: "flex"}}>
+          <span style={{ fontSize: "16px", lineHeight: "2.4", textAlign: "left", justifyContent: "left" }}>
             Trending Films
           </span>
-        </div>
+        </div> */}
         <div
           className="content"
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: "1rem",
+            gap: ".4rem",
             margin: 0,
             justifyContent: "space-between",
           }}
         >
-          {/* {movieData.map((movie, index) => ( */}
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (
             <>
               {movie !== null && (
@@ -44,28 +43,19 @@ export default function TrendingMovieGrid({
                   }}
                 >
                   <div
-                    className="test"
+                    className="poster-extra"
                     key={index}
-                    style={{
-                      // border: "1px solid rgba(255, 255, 255, 0.25)",
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "125px",
-                      background: "rgba(255, 255, 255, 0.125)",
-                      // boxShadow: "0em .2em .8em rgba(0, 0, 0, 0.25)",
-                      cursor: "pointer",
-                    }}
                     onClick={() => {
                       movieDetails(index);
-                      changeDisplay("movie");
+                      // changeDisplay("movie");
                     }}
                   >
                     <img
                       src={movie.moviePoster}
                       alt="Movie Poster"
                       style={{
-                        maxWidth: "125px",
-                        height: "190px",
+                        maxWidth: "156px",
+                        height: "237px",
                         objectFit: "cover",
                       }}
                     />
