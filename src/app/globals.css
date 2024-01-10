@@ -37,7 +37,7 @@ main {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   backdrop-filter: blur(20px);
   z-index: 2;
   position: absolute;
@@ -48,13 +48,14 @@ main {
   width: 90%;
   display: flex;
   justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 4rem;
 }
 
 .content {
   display: flex;
   align-items: center;
-  flex-direction: row;
-  margin-bottom: 4rem;
+  flex-direction: column;
   width: 100%;
 }
 
@@ -69,7 +70,8 @@ a {
   text-decoration: none;
 }
 
-h1 {
+h1,
+.title {
   color: #ffffff;
   font-size: 34px;
   font-weight: 900;
@@ -84,7 +86,7 @@ p {
 }
 
 span {
-  color: rgba(255, 255, 255, 0.69);
+  color: #b4b4b4;
   font-size: 14px;
   font-weight: 600;
   display: inline;
@@ -96,7 +98,6 @@ span {
   max-width: 275px;
   max-height: 415px;
   object-fit: cover;
-  /* border: 1px solid rgba(255, 255, 255, 0.25); */
   box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.25);
 }
 
@@ -105,8 +106,6 @@ span {
   display: flex;
   flex-direction: column;
   width: 215px;
-  /* background: rgba(0, 0, 0, 0.65); */
-  /* box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.5); */
   cursor: pointer;
   transition: 250ms linear;
 }
@@ -156,14 +155,13 @@ select {
   background: rgba(255, 255, 255, 0.125);
   border: 1px solid rgba(255, 255, 255, 0.25);
   padding: .4rem;
-  /* border-radius: 50px; */
   font-size: 14px;
   cursor: pointer;
   transition: linear 150ms;
   margin: 0rem;
   margin-bottom: .4rem;
   font-weight: 500;
-  backdrop-filter: blur(10px) brightness(1.2) contrast(1) saturate(1.4);
+  backdrop-filter: blur(20px) brightness(1.2) contrast(1) saturate(1.4);
 }
 
 input:hover,
@@ -226,6 +224,10 @@ button:active {
 }
 
 @media (min-width: 999px) {
+  .title {
+    font-size: 64px;
+  }
+
   h1 {
     font-size: 42px;
   }
@@ -237,8 +239,7 @@ button:active {
   .content {
     width: 100%;
     margin: 0;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+    flex-direction: row;
   }
 
   .description {
@@ -250,5 +251,6 @@ button:active {
 @media (min-width: 1499px) {
   .content-container {
     width: 70%;
+    margin-top: 3rem;
   }
 }

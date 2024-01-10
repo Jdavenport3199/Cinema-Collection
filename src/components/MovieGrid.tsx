@@ -16,10 +16,7 @@ export default function MovieGrid({
 }) {
   return (
     <>
-      <div
-        className="content-container"
-        style={{ width: "90%", marginTop: "3rem" }}
-      >
+      <div className="content-container" style={{ width: "90%" }}>
         <div
           style={{
             display: "flex",

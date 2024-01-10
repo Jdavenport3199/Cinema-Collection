@@ -241,11 +241,11 @@ export default function Home() {
                 className="content"
                 style={{
                   textAlign: "left",
-                  marginTop: "15%",
+                  marginTop: "12%",
                   display: "block",
                 }}
               >
-                <h1 style={{ lineHeight: 1.2 }}>Cinema Collection</h1>
+                <h1 className="title">Cinema Collection</h1>
                 <span style={{ fontSize: "18px" }}>
                   Discover Fresh Films, Curated by Your Favorite Genres
                 </span>
@@ -364,11 +364,21 @@ export default function Home() {
               </form>
             </div>
 
-            <span style={{ marginTop: "1rem", textAlign: "center" }}>
-              Press&ensp;
-              <img src="/search.svg" />
-              &ensp;for New Movies
-            </span>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                marginTop: "1rem",
+              }}
+            >
+              <span style={{ fontSize: "16px", textAlign: "center" }}>
+                Press&ensp;
+              </span>
+              <img src="/search-extra.svg" />
+              <span style={{ fontSize: "16px", textAlign: "center" }}>
+                &ensp;for New Movies
+              </span>
+            </div>
 
             <MovieGrid
               movieData={movies}
@@ -472,27 +482,15 @@ export default function Home() {
                 </select>
                 <button
                   type="submit"
-                  style={{ width: "28%", marginRight: ".8rem" }}
+                  onClick={() => {
+                    setPage((page) => (page = 1));
+                  }}
+                  style={{ width: "28%" }}
                 >
                   <img src="/search.svg" />
                 </button>
               </form>
             </div>
-
-            <span style={{ marginTop: "1rem", textAlign: "center" }}>
-              <button
-                onClick={() => {
-                  setCurrentDisplay("movieGrid");
-                }}
-                style={{
-                  paddingLeft: ".7rem",
-                  paddingRight: ".7rem",
-                }}
-              >
-                <img src="/home.svg" />
-              </button>
-              &ensp;View Previous Movies
-            </span>
 
             <Movie
               singleMovie={movies[movieDetailsIndex!]!}
@@ -514,7 +512,7 @@ export default function Home() {
           backgroundImage:
             movies?.length > 0
               ? `url(${movies[movieDetailsIndex!]?.moviePoster})`
-              : `url('./background1.jpg')`,
+              : `url('./background.jpg')`,
         }}
       ></div>
     </>

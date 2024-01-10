@@ -18,9 +18,12 @@ export default function MovieGrid({
 
   return (
     <>
-      <div className="content-container" style={{ flexDirection: "column" }}>
+      <div
+        className="content-container"
+        style={{ marginTop: "1rem", flexDirection: "column" }}
+      >
         <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
-          &middot; Related Movies
+          Related Movies
         </span>
 
         <div
@@ -31,6 +34,7 @@ export default function MovieGrid({
             gap: ".4rem",
             margin: 0,
             justifyContent: "space-between",
+            flexDirection: "row",
           }}
         >
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (

@@ -19,19 +19,15 @@ export default function TrendingMovieGrid({
         className="content-container"
         style={{ flexDirection: "column", width: "100%", marginTop: "2rem" }}
       >
-        {/* <div style={{ display: "flex"}}>
-          <span style={{ fontSize: "16px", lineHeight: "2.4", textAlign: "left", justifyContent: "left" }}>
-            Trending Films
-          </span>
-        </div> */}
         <div
           className="content"
           style={{
             display: "flex",
             flexWrap: "wrap",
-            gap: ".4rem",
+            gap: ".8rem",
             margin: 0,
             justifyContent: "space-between",
+            flexDirection: "row"
           }}
         >
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (

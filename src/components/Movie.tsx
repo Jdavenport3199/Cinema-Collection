@@ -29,7 +29,36 @@ export default function Movie({
 }) {
   return (
     <>
-      <div className="content-container">
+      <div className="content-container" style={{ margin: 0 }}>
+        <div
+          className="content"
+          style={{
+            marginBottom: 0,
+            marginTop: "1rem",
+          }}
+        >
+          <button
+            onClick={() => {
+              changeDisplay("movieGrid");
+            }}
+            style={{
+              paddingLeft: ".9rem",
+              paddingRight: ".9rem",
+              background: "none",
+              padding: 0,
+              fontSize: "16px",
+            }}
+          >
+            <img src="/back.svg" />
+            &ensp;Back to Movies
+          </button>
+        </div>
+      </div>
+
+      <div
+        className="content-container"
+        style={{ margin: "0rem", marginTop: "1rem", marginBottom: "1rem" }}
+      >
         {singleMovie && (
           <div className="content">
             <img src={singleMovie.moviePoster} className="poster" />
@@ -111,22 +140,22 @@ export default function Movie({
                 )}
               </div>
               <hr />
-              <span style={{ fontWeight: 600 }}>DIRECTOR</span>
+              <span style={{ fontWeight: 800 }}>DIRECTOR</span>
               <p>&emsp;{singleMovie.movieDirector}</p>
               <hr />
-              <span style={{ fontWeight: 600 }}>WRITERS</span>
+              <span style={{ fontWeight: 800 }}>WRITERS</span>
               <p>&emsp;{singleMovie.movieWriter}</p>
               <hr />
-              <span style={{ fontWeight: 600 }}>ACTORS</span>
+              <span style={{ fontWeight: 800 }}>ACTORS</span>
               <p>&emsp;{singleMovie.movieActors}</p>
               <hr />
-              <span style={{ fontWeight: 600 }}>AWARDS</span>
+              <span style={{ fontWeight: 800 }}>AWARDS</span>
               <p>&emsp;{singleMovie.movieAwards}</p>
               <div
                 style={{
                   display: "flex",
                   justifyContent: "right",
-                  marginTop: ".4rem",
+                  marginTop: ".8rem",
                 }}
               >
                 <button>
