@@ -35,6 +35,7 @@ export default function MovieGrid({
                     onClick={() => {
                       movieDetails(index);
                       changeDisplay("movie");
+                      window.scrollTo(0, 0);
                     }}
                   >
                     <img

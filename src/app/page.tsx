@@ -159,6 +159,7 @@ export default function Home() {
                 }}
               >
                 <select
+                  className="dropdown"
                   name="genre"
                   value={genre}
                   onChange={(e) => setGenre(e.target.value)}
@@ -187,6 +188,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre1"
                   value={subgenre1}
                   onChange={(e) => setSubgenre1(e.target.value)}
@@ -215,6 +217,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre2"
                   value={subgenre2}
                   onChange={(e) => setSubgenre2(e.target.value)}
@@ -241,7 +244,7 @@ export default function Home() {
                   <option value="10752">War</option>
                   <option value="37">Western</option>
                 </select>
-                <button type="submit" style={{ width: "25%" }}>
+                <button type="submit" style={{ maxWidth: "2.5rem" }}>
                   <img src="/search.svg" />
                 </button>
               </form>
@@ -281,6 +284,7 @@ export default function Home() {
                 }}
               >
                 <select
+                  className="dropdown"
                   name="genre"
                   value={genre}
                   onChange={(e) => {
@@ -311,6 +315,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre1"
                   value={subgenre1}
                   onChange={(e) => {
@@ -341,6 +346,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre2"
                   value={subgenre2}
                   onChange={(e) => {
@@ -372,6 +378,7 @@ export default function Home() {
 
                 <button
                   type="submit"
+                  style={{ maxWidth: "2.5rem" }}
                   onClick={() => {
                     setPreviousGenre(genre);
                     setPreviousSubgenre1(subgenre1);
@@ -382,33 +389,10 @@ export default function Home() {
                       subgenre2 !== previousSubgenre2
                     ) {
                       setPage(1);
-                      console.log("PAGE: " + page);
-                      console.log(
-                        "CURRENT GENRES: " + genre,
-                        subgenre1,
-                        subgenre2
-                      );
-                      console.log(
-                        "PREVIOUS GENRES: " + previousGenre,
-                        previousSubgenre1,
-                        previousSubgenre2
-                      );
                     } else {
                       setPage((page) => page + 1);
-                      console.log("PAGE: " + page);
-                      console.log(
-                        "CURRENT GENRES: " + genre,
-                        subgenre1,
-                        subgenre2
-                      );
-                      console.log(
-                        "PREVIOUS GENRES: " + previousGenre,
-                        previousSubgenre1,
-                        previousSubgenre2
-                      );
                     }
                   }}
-                  style={{ width: "25%" }}
                 >
                   <img src="/search.svg" />
                 </button>
@@ -421,12 +405,18 @@ export default function Home() {
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
-                  marginTop: "1rem",
+                  marginTop: "2rem",
                   flexDirection: "column",
                 }}
               >
-                <span style={{ fontSize: "16px", textAlign: "center" }}>
-                  &ensp;Generating Fresh Films
+                <span
+                  style={{
+                    fontSize: "20px",
+                    textAlign: "center",
+                    color: "white",
+                  }}
+                >
+                  &ensp;Finding Films
                 </span>
                 <Grid
                   visible={true}
@@ -435,7 +425,7 @@ export default function Home() {
                   color="#ffffff"
                   ariaLabel="grid-loading"
                   radius="12.5"
-                  wrapperStyle={{ marginTop: "1rem" }}
+                  wrapperStyle={{ marginTop: ".8rem" }}
                   wrapperClass="grid-wrapper"
                 />
               </div>
@@ -447,16 +437,36 @@ export default function Home() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    marginTop: "1rem",
+                    marginTop: "2rem",
+                    flexDirection: "column",
                   }}
                 >
-                  <span style={{ fontSize: "16px", textAlign: "center" }}>
-                    Press&ensp;
-                  </span>
-                  <img src="/search-extra.svg" />
-                  <span style={{ fontSize: "16px", textAlign: "center" }}>
-                    &ensp;for New Films
-                  </span>
+                  <div>
+                    <span
+                      style={{
+                        fontSize: "20px",
+                        textAlign: "center",
+                        color: "white",
+                      }}
+                    >
+                      We Found Films for You
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: ".2rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "16px", textAlign: "center" }}>
+                      Press&ensp;
+                    </span>
+                    <img src="/search-extra.svg" />
+                    <span style={{ fontSize: "16px", textAlign: "center" }}>
+                      &ensp;for New Films
+                    </span>
+                  </div>
                 </div>
                 <MovieGrid
                   movieData={movies}
@@ -478,6 +488,7 @@ export default function Home() {
                 }}
               >
                 <select
+                  className="dropdown"
                   name="genre"
                   value={genre}
                   onChange={(e) => setGenre(e.target.value)}
@@ -506,6 +517,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre1"
                   value={subgenre1}
                   onChange={(e) => setSubgenre1(e.target.value)}
@@ -534,6 +546,7 @@ export default function Home() {
                 </select>
 
                 <select
+                  className="dropdown"
                   name="subgenre2"
                   value={subgenre2}
                   onChange={(e) => setSubgenre2(e.target.value)}
@@ -562,10 +575,21 @@ export default function Home() {
                 </select>
                 <button
                   type="submit"
+                  style={{ maxWidth: "2.5rem" }}
                   onClick={() => {
-                    setPage((page) => (page = 1));
+                    setPreviousGenre(genre);
+                    setPreviousSubgenre1(subgenre1);
+                    setPreviousSubgenre2(subgenre2);
+                    if (
+                      genre !== previousGenre ||
+                      subgenre1 !== previousSubgenre1 ||
+                      subgenre2 !== previousSubgenre2
+                    ) {
+                      setPage(1);
+                    } else {
+                      setPage((page) => page + 1);
+                    }
                   }}
-                  style={{ width: "25%" }}
                 >
                   <img src="/search.svg" />
                 </button>
@@ -586,6 +610,7 @@ export default function Home() {
         )}
       </main>
 
+      <div className="background-overlay"></div>
       <div
         className="background"
         style={{

@@ -22,7 +22,9 @@ export default function MovieGrid({
         className="content-container"
         style={{ marginTop: "1rem", flexDirection: "column" }}
       >
-        <span style={{ lineHeight: "2.4" }}>Related Films</span>
+        <span style={{ lineHeight: "2.4", fontSize: "16px" }}>
+          Related Films
+        </span>
 
         <div className="related-moviegrid">
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (
@@ -39,6 +41,7 @@ export default function MovieGrid({
                     onClick={() => {
                       movieDetails(index);
                       changeDisplay("movie");
+                      window.scrollTo(0, 0);
                     }}
                   >
                     <img

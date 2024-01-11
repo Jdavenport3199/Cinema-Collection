@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -31,15 +33,26 @@ body {
   top: 0;
 }
 
+.background-overlay {
+  width: 100vw;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(20px);
+  z-index: 2;
+}
+
 main {
   width: 100vw;
   min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(20px);
-  z-index: 2;
+  z-index: 3;
   position: absolute;
   top: 0;
 }
@@ -79,6 +92,13 @@ main {
 a {
   color: inherit;
   text-decoration: none;
+  transition: 150ms linear;
+}
+
+a:hover,
+.btn-text:hover {
+  color: #b4b4b4;
+  transition: 150ms linear;
 }
 
 h1,
@@ -158,18 +178,16 @@ hr {
 form {
   display: flex;
   flex-direction: column;
-  width: fit-content;
+  width: 100%;
 }
 
-select {
+.dropdown {
   color: #ffffff;
   background: rgba(255, 255, 255, 0.125);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 2px;
-  width: fit-content;
-  padding: .4rem;
-  padding-left: .8rem;
-  padding-right: .8rem;
+  padding: .6rem;
+  width: 40%;
   margin-bottom: .4rem;
   font-size: 14px;
   cursor: pointer;
@@ -177,22 +195,18 @@ select {
   transition: linear 150ms;
 }
 
-select:hover {
+.dropdown:hover {
   border: 1px solid rgba(255, 255, 255, 1);
   transition: linear 150ms;
 }
 
-select:focus {
+.dropdown:focus {
   outline: none;
 }
 
-select option {
+.dropdown option {
   background-color: black;
 }
-
-/* ::placeholder {
-  color: #ffffffa8;
-} */
 
 button {
   border: 1px solid transparent;
@@ -226,8 +240,7 @@ button:active {
     flex-direction: row;
   }
 
-  input,
-  select {
+  .dropdown {
     margin: 0rem;
     margin-right: .4rem;
     width: fit-content;
@@ -271,6 +284,6 @@ button:active {
 @media (min-width: 1499px) {
   .content-container {
     width: 70%;
-    margin-top: 3rem;
+    margin-top: 2rem;
   }
 }

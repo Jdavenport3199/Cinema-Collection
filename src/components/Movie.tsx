@@ -38,6 +38,7 @@ export default function Movie({
           }}
         >
           <button
+            className="btn-text"
             onClick={() => {
               changeDisplay("movieGrid");
             }}
@@ -47,6 +48,7 @@ export default function Movie({
               background: "none",
               padding: 0,
               fontSize: "16px",
+              transition: "150ms linear",
             }}
           >
             <img src="/back.svg" />
@@ -74,13 +76,13 @@ export default function Movie({
                   alignItems: "center",
                   justifyContent: "space-between",
                   width: "100%",
-                  flexWrap: "wrap",
+                  flexWrap: "wrap-reverse",
                 }}
               >
                 <span
                   style={{
                     color: "#ffffff",
-                    lineHeight: "1.4",
+                    lineHeight: "1.6",
                     paddingRight: "2rem",
                   }}
                 >
@@ -100,7 +102,7 @@ export default function Movie({
                       alignItems: "center",
                       fontSize: "18px",
                       color: "#ffffff",
-                      lineHeight: "1.4",
+                      lineHeight: "1.6",
                     }}
                   >
                     <img src="/star-solid.svg" />
@@ -164,15 +166,15 @@ export default function Movie({
                   marginTop: ".8rem",
                 }}
               >
-                <button style={{ borderRadius: "2px" }}>
-                  <a
-                    target="_blank"
-                    href={`https://www.imdb.com/title/${singleMovie.movieID}/`}
-                    rel="noopener noreferrer"
-                  >
-                    View on IMDb
-                  </a>
-                </button>
+                <a
+                  style={{ fontSize: "16px", fontWeight: "600" }}
+                  target="_blank"
+                  href={`https://www.imdb.com/title/${singleMovie.movieID}/`}
+                  rel="noopener noreferrer"
+                >
+                  View on IMDb&ensp;
+                  <img src="/forward.svg" />
+                </a>
               </div>
             </div>
           </div>
