@@ -22,21 +22,9 @@ export default function MovieGrid({
         className="content-container"
         style={{ marginTop: "1rem", flexDirection: "column" }}
       >
-        <span style={{ fontSize: "16px", lineHeight: "2.4" }}>
-          Related Movies
-        </span>
+        <span style={{ lineHeight: "2.4" }}>Related Films</span>
 
-        <div
-          className="content"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: ".4rem",
-            margin: 0,
-            justifyContent: "space-between",
-            flexDirection: "row",
-          }}
-        >
+        <div className="related-moviegrid">
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (
             <>
               {movie !== null && (

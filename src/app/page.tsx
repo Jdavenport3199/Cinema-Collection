@@ -4,6 +4,7 @@ import Movie from "../components/Movie";
 import MovieGrid from "../components/MovieGrid";
 import RelatedMovieGrid from "@/components/RelatedMovieGrid";
 import TrendingMovieGrid from "@/components/TrendingMovieGrid";
+import { Grid } from "react-loader-spinner";
 
 export default function Home() {
   const [movies, setMovies] = useState<
@@ -36,10 +37,17 @@ export default function Home() {
   const [genre, setGenre] = useState("");
   const [subgenre1, setSubgenre1] = useState("");
   const [subgenre2, setSubgenre2] = useState("");
+
+  const [previousGenre, setPreviousGenre] = useState("");
+  const [previousSubgenre1, setPreviousSubgenre1] = useState("");
+  const [previousSubgenre2, setPreviousSubgenre2] = useState("");
   const [page, setPage] = useState<number>(1);
+
+  const [isLoading, setIsLoading] = useState<boolean>();
 
   async function loadMovieGrid(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    setIsLoading(true);
 
     if (!genre || !subgenre1 || !subgenre2) {
       console.error("Genre and both subgenres are required.");
@@ -59,45 +67,43 @@ export default function Home() {
     try {
       const responseData = await response.json();
 
-      // const moviesArray: string[] = [];
       let genreArray: any[] = [];
-
-      // if (
-      //   !moviesArray.includes(responseData.data.Title) &&
-      //   responseData.data.Response === "True" &&
-      //   responseData.data.Poster !== "N/A"
-      // ) {
-      //   moviesArray.push(responseData.data.Title);
-      //   genreArray = responseData.data.Genre.split(",").map((genre: string) =>
-      //     genre.trim()
-      //   );
+      let moviesArray: string[] = [];
 
       const moviesTest = responseData.data.map((x: any) => {
-        return {
-          movieID: x.imdbID,
-          movieTitle: x.Title,
-          movieYear: x.Year,
-          movieRated: x.Rated,
-          movieRuntime: x.Runtime,
-          movieRating: x.imdbRating,
-          movieVotes: x.imdbVotes,
-          moviePlot: x.Plot,
-          movieGenre: genreArray,
-          movieDirector: x.Director,
-          movieWriter: x.Writer,
-          movieActors: x.Actors,
-          movieAwards: x.Awards,
-          moviePoster: x.Poster,
-          movieBoxoffice: x.BoxOffice,
-          movieMetascore: x.Metascore,
-        };
+        if (
+          !moviesArray.includes(x.Title) &&
+          x.Response === "True" &&
+          x.Poster !== "N/A"
+        ) {
+          moviesArray.push(x.Title);
+
+          genreArray = x.Genre.split(",").map((genre: string) => genre.trim());
+          setIsLoading(false);
+          return {
+            movieID: x.imdbID,
+            movieTitle: x.Title,
+            movieYear: x.Year,
+            movieRated: x.Rated,
+            movieRuntime: x.Runtime,
+            movieRating: x.imdbRating,
+            movieVotes: x.imdbVotes,
+            moviePlot: x.Plot,
+            movieGenre: genreArray,
+            movieDirector: x.Director,
+            movieWriter: x.Writer,
+            movieActors: x.Actors,
+            movieAwards: x.Awards,
+            moviePoster: x.Poster,
+            movieBoxoffice: x.BoxOffice,
+            movieMetascore: x.Metascore,
+          };
+        } else {
+          return null;
+        }
       });
 
-      setMovies(moviesTest);
-      // } else {
-      //   console.log("IF STATEMENT")
-      //   return null;
-      // }
+      setMovies(moviesTest.filter((movie: null) => movie !== null));
     } catch (error) {
       console.error("Error in form submission:", error);
     }
@@ -144,7 +150,12 @@ export default function Home() {
               <form
                 onSubmit={(e) => {
                   loadMovieGrid(e);
-                  setCurrentDisplay("movieGrid");
+
+                  if (!genre || !subgenre1 || !subgenre2) {
+                    setCurrentDisplay(null);
+                  } else {
+                    setCurrentDisplay("movieGrid");
+                  }
                 }}
               >
                 <select
@@ -230,7 +241,7 @@ export default function Home() {
                   <option value="10752">War</option>
                   <option value="37">Western</option>
                 </select>
-                <button type="submit" style={{ width: "28%" }}>
+                <button type="submit" style={{ width: "25%" }}>
                   <img src="/search.svg" />
                 </button>
               </form>
@@ -272,7 +283,9 @@ export default function Home() {
                 <select
                   name="genre"
                   value={genre}
-                  onChange={(e) => setGenre(e.target.value)}
+                  onChange={(e) => {
+                    setGenre(e.target.value);
+                  }}
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
@@ -300,7 +313,9 @@ export default function Home() {
                 <select
                   name="subgenre1"
                   value={subgenre1}
-                  onChange={(e) => setSubgenre1(e.target.value)}
+                  onChange={(e) => {
+                    setSubgenre1(e.target.value);
+                  }}
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
@@ -328,7 +343,9 @@ export default function Home() {
                 <select
                   name="subgenre2"
                   value={subgenre2}
-                  onChange={(e) => setSubgenre2(e.target.value)}
+                  onChange={(e) => {
+                    setSubgenre2(e.target.value);
+                  }}
                   defaultValue=""
                 >
                   <option value="" disabled hidden>
@@ -352,39 +369,102 @@ export default function Home() {
                   <option value="10752">War</option>
                   <option value="37">Western</option>
                 </select>
+
                 <button
                   type="submit"
                   onClick={() => {
-                    setPage((page) => page + 1);
+                    setPreviousGenre(genre);
+                    setPreviousSubgenre1(subgenre1);
+                    setPreviousSubgenre2(subgenre2);
+                    if (
+                      genre !== previousGenre ||
+                      subgenre1 !== previousSubgenre1 ||
+                      subgenre2 !== previousSubgenre2
+                    ) {
+                      setPage(1);
+                      console.log("PAGE: " + page);
+                      console.log(
+                        "CURRENT GENRES: " + genre,
+                        subgenre1,
+                        subgenre2
+                      );
+                      console.log(
+                        "PREVIOUS GENRES: " + previousGenre,
+                        previousSubgenre1,
+                        previousSubgenre2
+                      );
+                    } else {
+                      setPage((page) => page + 1);
+                      console.log("PAGE: " + page);
+                      console.log(
+                        "CURRENT GENRES: " + genre,
+                        subgenre1,
+                        subgenre2
+                      );
+                      console.log(
+                        "PREVIOUS GENRES: " + previousGenre,
+                        previousSubgenre1,
+                        previousSubgenre2
+                      );
+                    }
                   }}
-                  style={{ width: "28%" }}
+                  style={{ width: "25%" }}
                 >
                   <img src="/search.svg" />
                 </button>
               </form>
             </div>
 
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginTop: "1rem",
-              }}
-            >
-              <span style={{ fontSize: "16px", textAlign: "center" }}>
-                Press&ensp;
-              </span>
-              <img src="/search-extra.svg" />
-              <span style={{ fontSize: "16px", textAlign: "center" }}>
-                &ensp;for New Movies
-              </span>
-            </div>
+            {isLoading && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginTop: "1rem",
+                  flexDirection: "column",
+                }}
+              >
+                <span style={{ fontSize: "16px", textAlign: "center" }}>
+                  &ensp;Generating Fresh Films
+                </span>
+                <Grid
+                  visible={true}
+                  height="40"
+                  width="40"
+                  color="#ffffff"
+                  ariaLabel="grid-loading"
+                  radius="12.5"
+                  wrapperStyle={{ marginTop: "1rem" }}
+                  wrapperClass="grid-wrapper"
+                />
+              </div>
+            )}
 
-            <MovieGrid
-              movieData={movies}
-              changeDisplay={setCurrentDisplay}
-              movieDetails={setMovieDetailsIndex}
-            />
+            {!isLoading && (
+              <>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    marginTop: "1rem",
+                  }}
+                >
+                  <span style={{ fontSize: "16px", textAlign: "center" }}>
+                    Press&ensp;
+                  </span>
+                  <img src="/search-extra.svg" />
+                  <span style={{ fontSize: "16px", textAlign: "center" }}>
+                    &ensp;for New Films
+                  </span>
+                </div>
+                <MovieGrid
+                  movieData={movies}
+                  changeDisplay={setCurrentDisplay}
+                  movieDetails={setMovieDetailsIndex}
+                />
+              </>
+            )}
           </>
         )}
 
@@ -485,7 +565,7 @@ export default function Home() {
                   onClick={() => {
                     setPage((page) => (page = 1));
                   }}
-                  style={{ width: "28%" }}
+                  style={{ width: "25%" }}
                 >
                   <img src="/search.svg" />
                 </button>

@@ -50,7 +50,7 @@ export default function Movie({
             }}
           >
             <img src="/back.svg" />
-            &ensp;Back to Movies
+            &ensp;Back to Films
           </button>
         </div>
       </div>
@@ -63,7 +63,11 @@ export default function Movie({
           <div className="content">
             <img src={singleMovie.moviePoster} className="poster" />
             <div className="description">
-              <h1>{singleMovie.movieTitle}</h1>
+              <h1>
+                {singleMovie?.movieTitle?.length >= 40
+                  ? singleMovie.movieTitle.substring(0, 46) + "..."
+                  : singleMovie.movieTitle}
+              </h1>
               <div
                 style={{
                   display: "flex",
@@ -76,7 +80,7 @@ export default function Movie({
                 <span
                   style={{
                     color: "#ffffff",
-                    lineHeight: "1.6",
+                    lineHeight: "1.4",
                     paddingRight: "2rem",
                   }}
                 >
@@ -96,6 +100,7 @@ export default function Movie({
                       alignItems: "center",
                       fontSize: "18px",
                       color: "#ffffff",
+                      lineHeight: "1.4",
                     }}
                   >
                     <img src="/star-solid.svg" />
@@ -124,14 +129,15 @@ export default function Movie({
                         style={{
                           color: "#ffffff",
                           background: "rgba(255, 255, 255, 0.125)",
-                          borderRadius: "100px",
                           border: "1px solid rgba(255, 255, 255, 0.25)",
+                          borderRadius: "2px",
                           width: "fit-content",
                           padding: ".4rem",
                           paddingLeft: ".8rem",
                           paddingRight: ".8rem",
                           marginRight: ".4rem",
-                          opacity: "1",
+                          fontWeight: "400",
+                          fontSize: "14px",
                         }}
                       >
                         {genre}
@@ -140,16 +146,16 @@ export default function Movie({
                 )}
               </div>
               <hr />
-              <span style={{ fontWeight: 800 }}>DIRECTOR</span>
+              <span>Director</span>
               <p>&emsp;{singleMovie.movieDirector}</p>
               <hr />
-              <span style={{ fontWeight: 800 }}>WRITERS</span>
+              <span>Writers</span>
               <p>&emsp;{singleMovie.movieWriter}</p>
               <hr />
-              <span style={{ fontWeight: 800 }}>ACTORS</span>
+              <span>Actors</span>
               <p>&emsp;{singleMovie.movieActors}</p>
               <hr />
-              <span style={{ fontWeight: 800 }}>AWARDS</span>
+              <span>Awards</span>
               <p>&emsp;{singleMovie.movieAwards}</p>
               <div
                 style={{
@@ -158,7 +164,7 @@ export default function Movie({
                   marginTop: ".8rem",
                 }}
               >
-                <button>
+                <button style={{ borderRadius: "2px" }}>
                   <a
                     target="_blank"
                     href={`https://www.imdb.com/title/${singleMovie.movieID}/`}

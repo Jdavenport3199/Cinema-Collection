@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
     let moviesArray = [];
 
-    for (let i = 0; i < 14; i++) {
+    for (let i = 0; i < 10; i++) {
       const movie_key = await fetch(
         `https://www.omdbapi.com/?i=tt3896198&apikey=ed6233cd&t=${
           genre_data.results[

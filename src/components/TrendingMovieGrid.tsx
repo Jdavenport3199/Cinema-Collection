@@ -19,17 +19,7 @@ export default function TrendingMovieGrid({
         className="content-container"
         style={{ flexDirection: "column", width: "100%", marginTop: "2rem" }}
       >
-        <div
-          className="content"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: ".8rem",
-            margin: 0,
-            justifyContent: "space-between",
-            flexDirection: "row"
-          }}
-        >
+        <div className="related-moviegrid">
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (
             <>
               {movie !== null && (
@@ -41,6 +31,7 @@ export default function TrendingMovieGrid({
                   <div
                     className="poster-extra"
                     key={index}
+                    style={{ cursor: "auto" }}
                     onClick={() => {
                       movieDetails(index);
                       // changeDisplay("movie");

@@ -49,7 +49,7 @@ main {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3rem;
 }
 
 .content {
@@ -57,6 +57,17 @@ main {
   align-items: center;
   flex-direction: column;
   width: 100%;
+}
+
+.related-moviegrid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: .8rem;
+  margin: 0;
 }
 
 .description {
@@ -98,7 +109,7 @@ span {
   max-width: 275px;
   max-height: 415px;
   object-fit: cover;
-  box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.25);
+  box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.5);
 }
 
 .moviegrid-poster {
@@ -150,27 +161,27 @@ form {
   width: fit-content;
 }
 
-input,
 select {
+  color: #ffffff;
   background: rgba(255, 255, 255, 0.125);
   border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 2px;
+  width: fit-content;
   padding: .4rem;
+  padding-left: .8rem;
+  padding-right: .8rem;
+  margin-bottom: .4rem;
   font-size: 14px;
   cursor: pointer;
+  backdrop-filter: blur(20px);
   transition: linear 150ms;
-  margin: 0rem;
-  margin-bottom: .4rem;
-  font-weight: 500;
-  backdrop-filter: blur(20px) brightness(1.2) contrast(1) saturate(1.4);
 }
 
-input:hover,
 select:hover {
   border: 1px solid rgba(255, 255, 255, 1);
   transition: linear 150ms;
 }
 
-input:focus,
 select:focus {
   outline: none;
 }
@@ -179,9 +190,9 @@ select option {
   background-color: black;
 }
 
-::placeholder {
+/* ::placeholder {
   color: #ffffffa8;
-}
+} */
 
 button {
   border: 1px solid transparent;
@@ -221,6 +232,11 @@ button:active {
     margin-right: .4rem;
     width: fit-content;
   }
+
+  .related-moviegrid {
+    justify-content: space-between;
+    gap: .4rem;
+  }
 }
 
 @media (min-width: 999px) {
@@ -233,6 +249,10 @@ button:active {
   }
 
   p {
+    font-size: 16px;
+  }
+
+  span {
     font-size: 16px;
   }
 
