@@ -25,7 +25,7 @@ body {
 
 .background {
   width: 100vw;
-  height: 100%;
+  height: 100dvh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -35,9 +35,7 @@ body {
 
 .background-overlay {
   width: 100vw;
-  height: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 100dvh;
   background-size: cover;
   position: fixed;
   top: 0;
@@ -48,13 +46,19 @@ body {
 
 main {
   width: 100vw;
-  min-height: 100vh;
   display: flex;
   align-items: center;
   flex-direction: column;
   z-index: 3;
   position: absolute;
   top: 0;
+}
+
+.text-holder {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 0rem;
 }
 
 .content-container {
@@ -104,10 +108,14 @@ a:hover,
 h1,
 .title {
   color: #ffffff;
-  font-size: 34px;
+  font-size: 26px;
   font-weight: 900;
   line-height: 1.2;
   word-break: break-word;
+}
+
+.title {
+  font-size: 34px;
 }
 
 p {
@@ -124,9 +132,9 @@ span {
 }
 
 .poster {
-  min-width: 275px;
+  min-width: 280px;
   min-height: 415px;
-  max-width: 275px;
+  max-width: 280px;
   max-height: 415px;
   object-fit: cover;
   box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.5);
@@ -168,17 +176,20 @@ hr {
 
 .form-holder {
   position: sticky;
-  top: 10px;
-  left: 0px;
+  top: 0px;
+  /* right: 0px; */
   z-index: 2;
   padding: 1rem;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: end;
 }
 
 .dropdown {
@@ -186,12 +197,13 @@ form {
   background: rgba(255, 255, 255, 0.125);
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 2px;
-  padding: .6rem;
-  width: 40%;
+  padding: .4rem;
+  /* width: 40%; */
+  height: 2.5rem;
   margin-bottom: .4rem;
   font-size: 14px;
   cursor: pointer;
-  backdrop-filter: blur(20px);
+  /* backdrop-filter: blur(20px); */
   transition: linear 150ms;
 }
 
@@ -231,9 +243,13 @@ button:active {
   transition: linear 150ms;
 }
 
-@media (min-width: 549px) {
+@media (min-width: 1199px) {
   .form-holder {
-    width: auto;
+    padding: 2rem;
+    padding-left: 4rem;
+    padding-right: 4rem;
+    padding-bottom: 1rem;
+    align-items: center;
   }
 
   form {
@@ -249,6 +265,10 @@ button:active {
   .related-moviegrid {
     justify-content: space-between;
     gap: .4rem;
+  }
+
+  .text-holder {
+    margin-top: 8rem;
   }
 }
 

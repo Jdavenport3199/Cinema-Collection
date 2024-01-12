@@ -29,12 +29,15 @@ export default function Movie({
 }) {
   return (
     <>
-      <div className="content-container" style={{ margin: 0 }}>
+      <div
+        className="content-container"
+        style={{ margin: 0, justifyContent: "left" }}
+      >
         <div
           className="content"
           style={{
-            marginBottom: 0,
-            marginTop: "1rem",
+            margin: 0,
+            width: "auto",
           }}
         >
           <button

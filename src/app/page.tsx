@@ -147,6 +147,19 @@ export default function Home() {
         {currentDisplay === null && (
           <>
             <div className="form-holder">
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "800",
+                  color: "white",
+                  marginRight: "1rem",
+                }}
+              >
+                Cinema
+                <br />
+                Collection
+              </span>
+
               <form
                 onSubmit={(e) => {
                   loadMovieGrid(e);
@@ -250,12 +263,12 @@ export default function Home() {
               </form>
             </div>
 
-            <div className="content-container">
+            <div className="content-container" style={{ marginTop: 0 }}>
               <div
                 className="content"
                 style={{
                   textAlign: "left",
-                  marginTop: "12%",
+                  marginTop: "14%",
                   display: "block",
                 }}
               >
@@ -277,6 +290,23 @@ export default function Home() {
         {currentDisplay === "movieGrid" && (
           <>
             <div className="form-holder">
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "800",
+                  color: "white",
+                  marginRight: "1rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Cinema
+                <br />
+                Collection
+              </span>
+
               <form
                 onSubmit={(e) => {
                   loadMovieGrid(e);
@@ -400,15 +430,7 @@ export default function Home() {
             </div>
 
             {isLoading && (
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  marginTop: "2rem",
-                  flexDirection: "column",
-                }}
-              >
+              <div className="text-holder">
                 <span
                   style={{
                     fontSize: "20px",
@@ -420,8 +442,8 @@ export default function Home() {
                 </span>
                 <Grid
                   visible={true}
-                  height="40"
-                  width="40"
+                  height="20"
+                  width="20"
                   color="#ffffff"
                   ariaLabel="grid-loading"
                   radius="12.5"
@@ -433,14 +455,7 @@ export default function Home() {
 
             {!isLoading && (
               <>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    marginTop: "2rem",
-                    flexDirection: "column",
-                  }}
-                >
+                <div className="text-holder">
                   <div>
                     <span
                       style={{
@@ -481,6 +496,23 @@ export default function Home() {
         {currentDisplay === "movie" && (
           <>
             <div className="form-holder">
+              <span
+                style={{
+                  fontSize: "18px",
+                  fontWeight: "800",
+                  color: "white",
+                  marginRight: "1rem",
+                  cursor: "pointer",
+                }}
+                onClick={() => {
+                  window.location.reload();
+                }}
+              >
+                Cinema
+                <br />
+                Collection
+              </span>
+
               <form
                 onSubmit={(e) => {
                   loadMovieGrid(e);
@@ -614,10 +646,11 @@ export default function Home() {
       <div
         className="background"
         style={{
+          // backgroundImage: movies.length > 0 ? `url(${movies[movieDetailsIndex!]?.moviePoster})` : `url('./background.jpg')`,
           backgroundImage:
-            movies?.length > 0
-              ? `url(${movies[movieDetailsIndex!]?.moviePoster})`
-              : `url('./background.jpg')`,
+            movies.length <= 0
+              ? `url('./background.jpg')`
+              : `url(${movies[movieDetailsIndex!]?.moviePoster})`,
         }}
       ></div>
     </>

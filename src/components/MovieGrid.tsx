@@ -16,13 +16,14 @@ export default function MovieGrid({
 }) {
   return (
     <>
-      <div className="content-container">
+      <div className="content-container" style={{ width: "auto" }}>
         <div
           style={{
             display: "flex",
             flexWrap: "wrap",
             gap: ".8rem",
             justifyContent: "center",
+            alignItems: "center",
           }}
         >
           {movieData.map((movie, index) => (
