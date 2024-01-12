@@ -267,9 +267,9 @@ button:active {
     gap: .4rem;
   }
 
-  .text-holder {
+  /* .text-holder {
     margin-top: 8rem;
-  }
+  } */
 }
 
 @media (min-width: 999px) {
