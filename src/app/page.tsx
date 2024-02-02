@@ -649,7 +649,7 @@ export default function Home() {
           // backgroundImage: movies.length > 0 ? `url(${movies[movieDetailsIndex!]?.moviePoster})` : `url('./background.jpg')`,
           backgroundImage:
             movies.length <= 0
-              ? ``
+              ? `url('./background.jpg')`
               : `url(${movies[movieDetailsIndex!]?.moviePoster})`,
         }}
       ></div>

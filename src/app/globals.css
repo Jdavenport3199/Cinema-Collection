@@ -26,6 +26,7 @@ body {
 .background {
   width: 100vw;
   height: 100dvh;
+  /* min-height: 125dvh; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -36,6 +37,7 @@ body {
 .background-overlay {
   width: 100vw;
   height: 100dvh;
+  /* min-height: 125dvh; */
   background-size: cover;
   position: fixed;
   top: 0;
@@ -46,6 +48,7 @@ body {
 
 main {
   width: 100vw;
+  /* min-height: 125dvh; */
   display: flex;
   align-items: center;
   flex-direction: column;
