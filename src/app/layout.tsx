@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title:
-    "Cinema Collection | Discover Fresh Films, Curated by Your Favorite Genres",
+    "Cinema Collection",
   description: "Discover Fresh Films, Curated by Your Favorite Genres",
 };
 

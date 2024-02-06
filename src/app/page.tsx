@@ -44,10 +44,12 @@ export default function Home() {
   const [page, setPage] = useState<number>(1);
 
   const [isLoading, setIsLoading] = useState<boolean>();
+  const [isEmptyMovies, setIsEmptyMovies] = useState<boolean>(false);
 
   async function loadMovieGrid(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
+    setIsEmptyMovies(false);
 
     if (!genre || !subgenre1 || !subgenre2) {
       console.error("Genre and both subgenres are required.");
@@ -70,7 +72,7 @@ export default function Home() {
       let genreArray: any[] = [];
       let moviesArray: string[] = [];
 
-      const moviesTest = responseData.data.map((x: any) => {
+      const moviesTest = responseData.data?.map((x: any) => {
         if (
           !moviesArray.includes(x.Title) &&
           x.Response === "True" &&
@@ -103,7 +105,11 @@ export default function Home() {
         }
       });
 
-      setMovies(moviesTest.filter((movie: null) => movie !== null));
+      if (moviesTest && Array.isArray(moviesTest)) {
+        setMovies(moviesTest.filter((movie: null) => movie !== null));
+      } else {
+        setIsEmptyMovies(true);
+      }
     } catch (error) {
       console.error("Error in form submission:", error);
     }
@@ -149,15 +155,13 @@ export default function Home() {
             <div className="form-holder">
               <span
                 style={{
-                  fontSize: "18px",
+                  fontSize: "24px",
                   fontWeight: "800",
                   color: "white",
                   marginRight: "1rem",
                 }}
               >
-                Cinema
-                <br />
-                Collection
+                Cinema Collection
               </span>
 
               <form
@@ -185,7 +189,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -214,7 +218,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -243,7 +247,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -292,7 +296,7 @@ export default function Home() {
             <div className="form-holder">
               <span
                 style={{
-                  fontSize: "18px",
+                  fontSize: "24px",
                   fontWeight: "800",
                   color: "white",
                   marginRight: "1rem",
@@ -302,9 +306,7 @@ export default function Home() {
                   window.location.reload();
                 }}
               >
-                Cinema
-                <br />
-                Collection
+                Cinema Collection
               </span>
 
               <form
@@ -329,7 +331,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -360,7 +362,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -391,7 +393,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -419,8 +421,10 @@ export default function Home() {
                       subgenre2 !== previousSubgenre2
                     ) {
                       setPage(1);
+                      console.log(page);
                     } else {
                       setPage((page) => page + 1);
+                      console.log(page);
                     }
                   }}
                 >
@@ -429,27 +433,83 @@ export default function Home() {
               </form>
             </div>
 
-            {isLoading && (
-              <div className="text-holder">
-                <span
-                  style={{
-                    fontSize: "20px",
-                    textAlign: "center",
-                    color: "white",
-                  }}
-                >
-                  &ensp;Finding Films
-                </span>
-                <Grid
-                  visible={true}
-                  height="20"
-                  width="20"
-                  color="#ffffff"
-                  ariaLabel="grid-loading"
-                  radius="12.5"
-                  wrapperStyle={{ marginTop: ".8rem" }}
-                  wrapperClass="grid-wrapper"
-                />
+            {isLoading && !isEmptyMovies && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "75vh",
+                }}
+              >
+                <div className="text-holder">
+                  <span
+                    style={{
+                      fontSize: "20px",
+                      textAlign: "center",
+                      color: "white",
+                    }}
+                  >
+                    Finding Films
+                  </span>
+                  <Grid
+                    visible={true}
+                    height="25"
+                    width="25"
+                    color="#b4b4b4"
+                    ariaLabel="grid-loading"
+                    radius="12.5"
+                    wrapperStyle={{ marginTop: ".8rem" }}
+                    wrapperClass="grid-wrapper"
+                  />
+                </div>
+              </div>
+            )}
+
+            {isLoading && isEmptyMovies && (
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  height: "75vh",
+                }}
+              >
+                <div className="text-holder">
+                  <span
+                    style={{
+                      fontSize: "20px",
+                      textAlign: "center",
+                      color: "white",
+                    }}
+                  >
+                    You&apos;ve Viewed all Films
+                  </span>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      marginTop: ".2rem",
+                    }}
+                  >
+                    <span style={{ fontSize: "16px", textAlign: "center" }}>
+                      Find More by Adjusting or Changing Genres
+                    </span>
+                  </div>
+                  <span
+                    style={{
+                      fontSize: "24px",
+                      fontWeight: "800",
+                      color: "white",
+                      marginTop: "2rem",
+                      cursor: "pointer",
+                      textAlign: "center",
+                    }}
+                    onClick={() => {
+                      window.location.reload();
+                    }}
+                  >
+                    Cinema Collection
+                  </span>
+                </div>
               </div>
             )}
 
@@ -460,7 +520,6 @@ export default function Home() {
                     <span
                       style={{
                         fontSize: "20px",
-                        textAlign: "center",
                         color: "white",
                       }}
                     >
@@ -498,7 +557,7 @@ export default function Home() {
             <div className="form-holder">
               <span
                 style={{
-                  fontSize: "18px",
+                  fontSize: "24px",
                   fontWeight: "800",
                   color: "white",
                   marginRight: "1rem",
@@ -508,9 +567,7 @@ export default function Home() {
                   window.location.reload();
                 }}
               >
-                Cinema
-                <br />
-                Collection
+                Cinema Collection
               </span>
 
               <form
@@ -533,7 +590,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -562,7 +619,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -591,7 +648,7 @@ export default function Home() {
                   <option value="12">Adventure</option>
                   <option value="35">Comedy</option>
                   <option value="80">Crime</option>
-                  {/* <option value="99">Documentary</option> */}
+                  <option value="99">Documentary</option>
                   <option value="18">Drama</option>
                   <option value="10751">Family</option>
                   <option value="14">Fantasy</option>
@@ -618,8 +675,10 @@ export default function Home() {
                       subgenre2 !== previousSubgenre2
                     ) {
                       setPage(1);
+                      console.log(page);
                     } else {
                       setPage((page) => page + 1);
+                      console.log(page);
                     }
                   }}
                 >
