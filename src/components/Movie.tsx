@@ -1,5 +1,6 @@
 "use client";
 import { Dispatch, SetStateAction } from "react";
+import styles from "../app/movie/page.module.css";
 
 export default function Movie({
   singleMovie,
@@ -29,160 +30,185 @@ export default function Movie({
 }) {
   return (
     <>
-      <div
-        className="content-container"
-        style={{ margin: 0, justifyContent: "left" }}
-      >
-        <div
-          className="content"
-          style={{
-            margin: 0,
-            width: "auto",
-          }}
-        >
-          <button
-            className="btn-text"
-            onClick={() => {
-              changeDisplay("movieGrid");
-            }}
+      {singleMovie && (
+        <>
+          <div
+            className="content-container"
             style={{
-              paddingLeft: ".9rem",
-              paddingRight: ".9rem",
-              background: "none",
-              padding: 0,
-              fontSize: "16px",
-              transition: "150ms linear",
+              margin: "0rem",
+              width: "100%",
+              justifyContent: "center",
+              height: "600px",
+              alignItems: "center",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
             }}
           >
-            <img src="/back.svg" />
-            &ensp;Back to Films
-          </button>
-        </div>
-      </div>
-
-      <div
-        className="content-container"
-        style={{ margin: "0rem", marginTop: "1rem", marginBottom: "1rem" }}
-      >
-        {singleMovie && (
-          <div className="content">
-            <img src={singleMovie.moviePoster} className="poster" />
-            <div className="description">
-              <h1>
-                {singleMovie?.movieTitle?.length >= 40
-                  ? singleMovie.movieTitle.substring(0, 46) + "..."
-                  : singleMovie.movieTitle}
-              </h1>
-              <div
+            <>
+              <img
+                src={singleMovie.moviePoster}
                 style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                  width: "100%",
-                  flexWrap: "wrap-reverse",
+                  width: "70%",
+                  height: "600px",
+                  objectFit: "cover",
+                  position: "absolute",
+                  objectPosition: "top center",
+                  right: "0px",
+                  WebkitMaskImage:
+                    "linear-gradient(to right, transparent, black 80%)",
+                  maskImage:
+                    "linear-gradient(to right, transparent, black 80%)",
+                }}
+              />
+              <div
+                className="content-container"
+                style={{
+                  margin: "0rem",
+                  padding: "2rem",
+                  justifyContent: "left",
                 }}
               >
-                <span
-                  style={{
-                    color: "#ffffff",
-                    lineHeight: "1.6",
-                    paddingRight: "2rem",
-                  }}
-                >
-                  {singleMovie.movieYear}&ensp;&middot;&ensp;
-                  {singleMovie.movieRated}
-                  &ensp;&middot;&ensp;{singleMovie.movieRuntime}
-                </span>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      fontSize: "18px",
-                      color: "#ffffff",
-                      lineHeight: "1.6",
-                    }}
+                <div className="content">
+                  <div
+                    className="description"
+                    style={{ zIndex: "2", paddingTop: "14rem" }}
                   >
-                    <img src="/star-solid.svg" />
-                    &nbsp;{singleMovie.movieRating}
-                  </span>
-                  <span>
-                    &nbsp;/&nbsp;10&ensp;&middot;&ensp;{singleMovie.movieVotes}{" "}
-                    Reviews
-                  </span>
-                </div>
-              </div>
-              <hr />
-              <p>{singleMovie.moviePlot}</p>
-              <div
-                style={{
-                  display: "block",
-                  marginTop: "1rem",
-                  marginBottom: "1.4rem",
-                }}
-              >
-                {singleMovie.movieGenre.map(
-                  (genre, index) =>
-                    genre && (
-                      <span
-                        key={index}
+                    <h1>
+                      {singleMovie?.movieTitle?.length >= 40
+                        ? singleMovie.movieTitle.substring(0, 46) + "..."
+                        : singleMovie.movieTitle}
+                    </h1>
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        width: "100%",
+                        flexWrap: "wrap-reverse",
+                        gap: "2rem",
+                      }}
+                    >
+                      <div
                         style={{
-                          color: "#ffffff",
-                          background: "rgba(255, 255, 255, 0.125)",
-                          border: "1px solid rgba(255, 255, 255, 0.25)",
-                          borderRadius: "2px",
-                          width: "fit-content",
-                          padding: ".4rem",
-                          paddingLeft: ".8rem",
-                          paddingRight: ".8rem",
-                          marginRight: ".4rem",
-                          fontWeight: "400",
-                          fontSize: "14px",
+                          display: "flex",
+                          alignItems: "center",
                         }}
                       >
-                        {genre}
+                        <span style={{ fontSize: "18px", color: "#ffffff" }}>
+                          <img src="/star-solid.svg" />
+                          &nbsp;{singleMovie.movieRating}
+                        </span>
+                        <span>&nbsp;/&nbsp;10</span>
+                      </div>
+                      <span
+                        style={{
+                          color: "#ffffff",
+                          paddingRight: "2rem",
+                        }}
+                      >
+                        {singleMovie.movieYear}&ensp;&middot;&ensp;
+                        {singleMovie.movieRated}
+                        &ensp;&middot;&ensp;{singleMovie.movieRuntime}
                       </span>
-                    )
-                )}
+                    </div>
+                    <div
+                      style={{
+                        display: "block",
+                        marginTop: "1rem",
+                        marginBottom: "1.4rem",
+                      }}
+                    >
+                      {singleMovie.movieGenre.map(
+                        (genre, index) =>
+                          genre && (
+                            <span
+                              key={index}
+                              style={{
+                                color: "#ffffff",
+                                background: "rgba(255, 255, 255, 0.175)",
+                                borderRadius: "100px",
+                                width: "fit-content",
+                                padding: ".4rem",
+                                paddingLeft: "1rem",
+                                paddingRight: "1rem",
+                                marginRight: ".4rem",
+                                fontWeight: "400",
+                                fontSize: "14px",
+                                backdropFilter: "blur(20px)",
+                              }}
+                            >
+                              {genre}
+                            </span>
+                          )
+                      )}
+                    </div>
+                  </div>
+                </div>
               </div>
-              <hr />
-              <span>Director</span>
-              <p>&emsp;{singleMovie.movieDirector}</p>
-              <hr />
-              <span>Writers</span>
-              <p>&emsp;{singleMovie.movieWriter}</p>
-              <hr />
-              <span>Actors</span>
-              <p>&emsp;{singleMovie.movieActors}</p>
-              <hr />
-              <span>Awards</span>
-              <p>&emsp;{singleMovie.movieAwards}</p>
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "right",
-                  marginTop: ".8rem",
-                }}
-              >
-                <a
-                  style={{ fontSize: "16px", fontWeight: "600" }}
-                  target="_blank"
-                  href={`https://www.imdb.com/title/${singleMovie.movieID}/`}
-                  rel="noopener noreferrer"
+            </>
+          </div>
+
+          <div
+            style={{
+              width: "100%",
+              borderBottom: "1px solid rgba(255, 255, 255, 0.15)",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <div
+              className="content-container"
+              style={{
+                margin: "0rem",
+                padding: "2rem",
+                borderLeft: "1px solid rgba(255, 255, 255, 0.15)",
+                borderRight: "1px solid rgba(255, 255, 255, 0.15)",
+              }}
+            >
+              <div className="content">
+                <div
+                  className="description"
+                  style={{ display: "flex", flexDirection: "column" }}
                 >
-                  View on IMDb&ensp;
-                  <img src="/forward.svg" />
-                </a>
+                  <h2>Storyline & Details</h2>
+                  <hr />
+                  <p>{singleMovie.moviePlot}</p>
+                  <hr />
+                  <div>
+                    <span style={{ lineHeight: "1.4" }}>Director:</span>
+                    <p>&emsp;{singleMovie.movieDirector}</p>
+                  </div>
+                  <div>
+                    <span style={{ lineHeight: "1.4" }}>Writers:</span>
+                    <p>&emsp;{singleMovie.movieWriter}</p>
+                  </div>
+                  <div>
+                    <span style={{ lineHeight: "1.4" }}>Actors:</span>
+                    <p>&emsp;{singleMovie.movieActors}</p>
+                  </div>
+                  <div>
+                    <span style={{ lineHeight: "1.4" }}>Awards:</span>
+                    <p>&emsp;{singleMovie.movieAwards}</p>
+                  </div>
+                  <hr />
+                  <hr />
+                  <a
+                    style={{
+                      fontSize: "16px",
+                      fontWeight: "600",
+                      width: "fit-content",
+                    }}
+                    target="_blank"
+                    href={`https://www.imdb.com/title/${singleMovie.movieID}/`}
+                    rel="noopener noreferrer"
+                  >
+                    View on IMDb&ensp;
+                    <img src="/forward.svg" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-        )}
-      </div>
+        </>
+      )}
     </>
   );
 }

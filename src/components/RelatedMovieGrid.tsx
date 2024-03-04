@@ -14,17 +14,25 @@ export default function MovieGrid({
   changeDisplay: Dispatch<SetStateAction<"movie" | "movieGrid" | null>>;
   movieDetails: Dispatch<SetStateAction<number | null>>;
 }) {
-  const maxMoviesToShow = 8;
+  const maxMoviesToShow = 7;
 
   return (
     <>
       <div
         className="content-container"
-        style={{ marginTop: "1rem", flexDirection: "column" }}
+        style={{
+          margin: "0rem",
+          marginBottom: "4rem",
+          padding: "2rem",
+          flexDirection: "column",
+          // borderLeft: "1px solid rgba(255, 255, 255, 0.15)",
+          // borderRight: "1px solid rgba(255, 255, 255, 0.15)",
+        }}
       >
-        <span style={{ lineHeight: "2.4", fontSize: "16px" }}>
-          Related Films
-        </span>
+        <div style={{ width: "100%" }}>
+          <h2>Related Films</h2>
+          <hr />
+        </div>
 
         <div className="related-moviegrid">
           {movieData.slice(0, maxMoviesToShow).map((movie, index) => (

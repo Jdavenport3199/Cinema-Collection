@@ -68,6 +68,7 @@ main {
   width: 90%;
   display: flex;
   justify-content: center;
+  align-items: center;
   margin-top: 1rem;
   margin-bottom: 3rem;
 }
@@ -91,8 +92,6 @@ main {
 }
 
 .description {
-  margin: 0;
-  margin-top: 1rem;
   width: 100%;
 }
 
@@ -111,7 +110,7 @@ a:hover,
 h1,
 .title {
   color: #ffffff;
-  font-size: 26px;
+  font-size: clamp(24px, 6vw, 64px);
   font-weight: 900;
   line-height: 1.2;
   word-break: break-word;
@@ -155,7 +154,7 @@ span {
 .poster-extra {
   display: flex;
   flex-direction: column;
-  width: 156px;
+  /* max-width: 156px; */
   border: 1px solid transparent;
   box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.5);
   cursor: pointer;
@@ -172,16 +171,16 @@ span {
 
 hr {
   border: 0px;
-  border-top: 1px solid rgba(255, 255, 255, 0.25);
-  margin-top: .8rem;
-  margin-bottom: .8rem;
+  /* border-top: 1px solid rgba(255, 255, 255, 0.25); */
+  margin-top: .4rem;
+  margin-bottom: .4rem;
 }
 
 .form-holder {
   position: sticky;
   top: 0px;
   /* right: 0px; */
-  z-index: 2;
+  z-index: 3;
   padding: 1rem;
   width: 100%;
   display: flex;
@@ -197,9 +196,12 @@ form {
 
 .dropdown {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.125);
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 2px;
+  /* background: rgba(255, 255, 255, 0.125);
+  border: 1px solid rgba(255, 255, 255, 0.25); */
+  background: rgba(255, 255, 255, 0.176);
+  border: 1px solid transparent;
+
+  border-radius: 100px;
   padding: .4rem;
   /* width: 40%; */
   height: 2.5rem;
@@ -237,10 +239,10 @@ button {
   transition: linear 150ms;
 }
 
-button:hover {
+/* button:hover {
   background: #0b329e;
   transition: linear 150ms;
-}
+} */
 
 button:active {
   transition: linear 150ms;
@@ -267,7 +269,7 @@ button:active {
 
   .related-moviegrid {
     justify-content: space-between;
-    gap: .4rem;
+    gap: 1rem;
   }
 
   /* .text-holder {
@@ -280,9 +282,9 @@ button:active {
     font-size: 64px;
   }
 
-  h1 {
+  /* h1 {
     font-size: 42px;
-  }
+  } */
 
   p {
     font-size: 16px;
@@ -296,11 +298,6 @@ button:active {
     width: 100%;
     margin: 0;
     flex-direction: row;
-  }
-
-  .description {
-    margin: 0;
-    margin-left: 2rem;
   }
 }
 

@@ -1,10 +1,12 @@
 "use client";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import Movie from "../components/Movie";
 import MovieGrid from "../components/MovieGrid";
 import RelatedMovieGrid from "@/components/RelatedMovieGrid";
 import TrendingMovieGrid from "@/components/TrendingMovieGrid";
 import { Grid } from "react-loader-spinner";
+import Image from "next/image";
+import styles from "../app/page.module.css";
 
 export default function Home() {
   const [movies, setMovies] = useState<
@@ -135,6 +137,16 @@ export default function Home() {
     }
   }
 
+  const movieDiv = useRef<HTMLDivElement>(null);
+  const trendingDiv = useRef<HTMLDivElement>(null);
+  const exploreDiv = useRef<HTMLDivElement>(null);
+
+  const scrollTo = (ref: React.RefObject<HTMLDivElement>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   useEffect(() => {
     loadTrendingGrid();
   }, []);
@@ -152,18 +164,8 @@ export default function Home() {
       <main>
         {currentDisplay === null && (
           <>
-            <div className="form-holder">
-              <span
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "800",
-                  color: "white",
-                  marginRight: "1rem",
-                }}
-              >
-                Cinema Collection
-              </span>
-
+            <div className={styles.formHolder}>
+              <span className={styles.logoText}>Cinema Collection</span>
               <form
                 onSubmit={(e) => {
                   loadMovieGrid(e);
@@ -265,29 +267,188 @@ export default function Home() {
                   <img src="/search.svg" />
                 </button>
               </form>
+              {/* <div className={styles.navButtons}>
+                <button
+                  className={styles.btnText}
+                  onClick={() => scrollTo(trendingDiv)}
+                >
+                  Trending
+                </button>
+                <button
+                  className={styles.btnText}
+                  onClick={() => scrollTo(exploreDiv)}
+                >
+                  Explore
+                </button>
+              </div> */}
             </div>
 
-            <div className="content-container" style={{ marginTop: 0 }}>
-              <div
-                className="content"
-                style={{
-                  textAlign: "left",
-                  marginTop: "14%",
-                  display: "block",
-                }}
-              >
-                <h1 className="title">Cinema Collection</h1>
-                <span style={{ fontSize: "18px" }}>
-                  Discover Fresh Films, Curated by Your Favorite Genres
-                </span>
+            <div className={styles.contentContainer}>
+              <div className={styles.landingContainer}>
+                <div style={{ paddingBottom: "4rem" }}>
+                  <h1 style={{ lineHeight: "1.4" }}>Discover Fresh Films</h1>
+                  <p className={styles.subHeading}>
+                    Curated by your <b>favorite</b> genres.
+                  </p>
+                </div>
+                <div>
+                  <button
+                    className={styles.btnLanding}
+                    onClick={() => scrollTo(movieDiv)}
+                  >
+                    View Films
+                  </button>
+                </div>
+              </div>
+              <Image
+                className={styles.imgSplash}
+                src={"/movies.png"}
+                width={1920}
+                height={950}
+                alt=""
+              />
+            </div>
 
-                <TrendingMovieGrid
-                  movieData={moviesTrending}
-                  changeDisplay={setCurrentDisplay}
-                  movieDetails={setMovieDetailsIndex}
+            <div ref={movieDiv} className={styles.movieContainer}>
+              <>
+                <Image
+                  className={styles.imgMovie}
+                  src={"/nightcrawler.jpg"}
+                  width={1920}
+                  height={600}
+                  alt=""
                 />
+                <div className={styles.movieTitleContainer}>
+                  <div className={styles.content}>
+                    <div className={styles.description}>
+                      <h1>Nightcrawler</h1>
+                      <div className={styles.movieDetailsContainer}>
+                        <div className={styles.movieDetails}>
+                          <span style={{ fontSize: "18px", color: "#ffffff" }}>
+                            <img src="/star-solid.svg" />
+                            &nbsp;7.8
+                          </span>
+                          <span>&nbsp;/&nbsp;10</span>
+                        </div>
+                        <span
+                          style={{
+                            color: "#ffffff",
+                            paddingRight: "2rem",
+                          }}
+                        >
+                          2014&ensp;&middot;&ensp; R &ensp;&middot;&ensp;117 min
+                        </span>
+                      </div>
+                      <div className={styles.movieGenresContainer}>
+                        <span className={styles.movieGenre}>Crime</span>
+                        <span className={styles.movieGenre}>Drama</span>
+                        <span className={styles.movieGenre}>Thriller</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </>
+            </div>
+
+            <div className={styles.movieExtraHolder}>
+              <div className={styles.movieExtraContainer}>
+                <div className={styles.content}>
+                  <div className={styles.movieExtraDetails}>
+                    <h2>Storyline & Details</h2>
+                    <hr />
+                    <p>
+                      When Louis Bloom, a con man desperate for work, muscles
+                      into the world of L.A. crime journalism, he blurs the line
+                      between observer and participant to become the star of his
+                      own story.
+                    </p>
+                    <hr />
+                    <div>
+                      <span style={{ lineHeight: "1.4" }}>Director:</span>
+                      <p>&emsp;Dan Gilroy</p>
+                    </div>
+                    <div>
+                      <span style={{ lineHeight: "1.4" }}>Writers:</span>
+                      <p>&emsp;Dan Gilroy</p>
+                    </div>
+                    <div>
+                      <span style={{ lineHeight: "1.4" }}>Actors:</span>
+                      <p>&emsp;Jake Gyllenhaal, Rene Russo, Bill Paxton</p>
+                    </div>
+                    <div>
+                      <span style={{ lineHeight: "1.4" }}>Awards:</span>
+                      <p>&emsp;44 wins & 126 nominations total</p>
+                    </div>
+                    <hr />
+                    <hr />
+                    <a
+                      className={styles.linkIMDB}
+                      target="_blank"
+                      href={`https://www.imdb.com/title/tt2872718/`}
+                      rel="noopener noreferrer"
+                    >
+                      View on IMDb&ensp;
+                      <img src="/forward.svg" />
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
+
+            <div ref={trendingDiv} className={styles.trendingContainer}>
+              <div>
+                <h1 style={{ lineHeight: "1.4" }}>Today's Trending</h1>
+                <p className={styles.subHeading}>
+                  Today's top <b>trending</b> films and movies.
+                </p>
+              </div>
+            </div>
+
+            <TrendingMovieGrid
+              movieData={moviesTrending}
+              changeDisplay={setCurrentDisplay}
+              movieDetails={setMovieDetailsIndex}
+            />
+
+            {/* <div ref={exploreDiv} className={styles.exploreHolder}>
+              <div className={styles.exploreContainer}>
+                <Image
+                  className={styles.imgSplash}
+                  src={"/movies.png"}
+                  width={1920}
+                  height={920}
+                  alt=""
+                />
+                <div style={{ zIndex: "1", paddingTop: "18rem" }}>
+                  <h1 style={{ lineHeight: "1.4" }}>Start Exploring</h1>
+                  <p className={styles.subHeading}>
+                    Select <b>3</b> film categories to start exploring.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.btnGenreHolder}>
+              <div className={styles.btnGenreContainer}>
+                <button className={styles.btnGenre}>Action</button>
+                <button className={styles.btnGenre}>Adventure</button>
+                <button className={styles.btnGenre}>Comedy</button>
+                <button className={styles.btnGenre}>Crime</button>
+                <button className={styles.btnGenre}>Documentary</button>
+                <button className={styles.btnGenre}>Drama</button>
+                <button className={styles.btnGenre}>Family</button>
+                <button className={styles.btnGenre}>Fantasy</button>
+                <button className={styles.btnGenre}>History</button>
+                <button className={styles.btnGenre}>Horror</button>
+                <button className={styles.btnGenre}>Music</button>
+                <button className={styles.btnGenre}>Mystery</button>
+                <button className={styles.btnGenre}>Romance</button>
+                <button className={styles.btnGenre}>Science Fiction</button>
+                <button className={styles.btnGenre}>Thriller</button>
+                <button className={styles.btnGenre}>War</button>
+                <button className={styles.btnGenre}>Western</button>
+              </div>
+            </div> */}
           </>
         )}
 
@@ -295,13 +456,8 @@ export default function Home() {
           <>
             <div className="form-holder">
               <span
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "800",
-                  color: "white",
-                  marginRight: "1rem",
-                  cursor: "pointer",
-                }}
+                className={styles.logoText}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   window.location.reload();
                 }}
@@ -554,137 +710,33 @@ export default function Home() {
 
         {currentDisplay === "movie" && (
           <>
-            <div className="form-holder">
+            <div className="form-holder" style={{ position: "fixed" }}>
               <span
-                style={{
-                  fontSize: "24px",
-                  fontWeight: "800",
-                  color: "white",
-                  marginRight: "1rem",
-                  cursor: "pointer",
-                }}
+                className={styles.logoText}
+                style={{ cursor: "pointer" }}
                 onClick={() => {
                   window.location.reload();
                 }}
               >
                 Cinema Collection
               </span>
-
-              <form
-                onSubmit={(e) => {
-                  loadMovieGrid(e);
+              <button
+                className="btn-text"
+                onClick={() => {
                   setCurrentDisplay("movieGrid");
                 }}
+                style={{
+                  paddingLeft: ".9rem",
+                  paddingRight: ".9rem",
+                  background: "none",
+                  padding: 0,
+                  fontSize: "16px",
+                  transition: "150ms linear",
+                }}
               >
-                <select
-                  className="dropdown"
-                  name="genre"
-                  value={genre}
-                  onChange={(e) => setGenre(e.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled hidden>
-                    Genre
-                  </option>
-                  <option value="28">Action</option>
-                  <option value="12">Adventure</option>
-                  <option value="35">Comedy</option>
-                  <option value="80">Crime</option>
-                  <option value="99">Documentary</option>
-                  <option value="18">Drama</option>
-                  <option value="10751">Family</option>
-                  <option value="14">Fantasy</option>
-                  <option value="36">History</option>
-                  <option value="27">Horror</option>
-                  <option value="10402">Music</option>
-                  <option value="9648">Mystery</option>
-                  <option value="10749">Romance</option>
-                  <option value="878">Science Fiction</option>
-                  <option value="53">Thriller</option>
-                  <option value="10752">War</option>
-                  <option value="37">Western</option>
-                </select>
-
-                <select
-                  className="dropdown"
-                  name="subgenre1"
-                  value={subgenre1}
-                  onChange={(e) => setSubgenre1(e.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled hidden>
-                    Genre
-                  </option>
-                  <option value="28">Action</option>
-                  <option value="12">Adventure</option>
-                  <option value="35">Comedy</option>
-                  <option value="80">Crime</option>
-                  <option value="99">Documentary</option>
-                  <option value="18">Drama</option>
-                  <option value="10751">Family</option>
-                  <option value="14">Fantasy</option>
-                  <option value="36">History</option>
-                  <option value="27">Horror</option>
-                  <option value="10402">Music</option>
-                  <option value="9648">Mystery</option>
-                  <option value="10749">Romance</option>
-                  <option value="878">Science Fiction</option>
-                  <option value="53">Thriller</option>
-                  <option value="10752">War</option>
-                  <option value="37">Western</option>
-                </select>
-
-                <select
-                  className="dropdown"
-                  name="subgenre2"
-                  value={subgenre2}
-                  onChange={(e) => setSubgenre2(e.target.value)}
-                  defaultValue=""
-                >
-                  <option value="" disabled hidden>
-                    Genre
-                  </option>
-                  <option value="28">Action</option>
-                  <option value="12">Adventure</option>
-                  <option value="35">Comedy</option>
-                  <option value="80">Crime</option>
-                  <option value="99">Documentary</option>
-                  <option value="18">Drama</option>
-                  <option value="10751">Family</option>
-                  <option value="14">Fantasy</option>
-                  <option value="36">History</option>
-                  <option value="27">Horror</option>
-                  <option value="10402">Music</option>
-                  <option value="9648">Mystery</option>
-                  <option value="10749">Romance</option>
-                  <option value="878">Science Fiction</option>
-                  <option value="53">Thriller</option>
-                  <option value="10752">War</option>
-                  <option value="37">Western</option>
-                </select>
-                <button
-                  type="submit"
-                  style={{ maxWidth: "2.5rem" }}
-                  onClick={() => {
-                    setPreviousGenre(genre);
-                    setPreviousSubgenre1(subgenre1);
-                    setPreviousSubgenre2(subgenre2);
-                    if (
-                      genre !== previousGenre ||
-                      subgenre1 !== previousSubgenre1 ||
-                      subgenre2 !== previousSubgenre2
-                    ) {
-                      setPage(1);
-                      console.log(page);
-                    } else {
-                      setPage((page) => page + 1);
-                      console.log(page);
-                    }
-                  }}
-                >
-                  <img src="/search.svg" />
-                </button>
-              </form>
+                <img src="/back.svg" />
+                &ensp;Back to Films
+              </button>
             </div>
 
             <Movie
@@ -700,18 +752,6 @@ export default function Home() {
           </>
         )}
       </main>
-
-      <div className="background-overlay"></div>
-      <div
-        className="background"
-        style={{
-          // backgroundImage: movies.length > 0 ? `url(${movies[movieDetailsIndex!]?.moviePoster})` : `url('./background.jpg')`,
-          backgroundImage:
-            movies.length <= 0
-              ? `url('./background.jpg')`
-              : `url(${movies[movieDetailsIndex!]?.moviePoster})`,
-        }}
-      ></div>
     </>
   );
 }
