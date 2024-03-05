@@ -111,9 +111,11 @@ export default function Movie({
                     </div>
                     <div
                       style={{
-                        display: "block",
+                        display: "flex",
                         marginTop: "1rem",
                         marginBottom: "1.4rem",
+                        flexWrap: "wrap",
+                        gap: ".4rem",
                       }}
                     >
                       {singleMovie.movieGenre.map(
@@ -129,7 +131,6 @@ export default function Movie({
                                 padding: ".4rem",
                                 paddingLeft: "1rem",
                                 paddingRight: "1rem",
-                                marginRight: ".4rem",
                                 fontWeight: "400",
                                 fontSize: "14px",
                                 backdropFilter: "blur(20px)",

@@ -5,8 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title:
-    "Cinema Collection",
+  title: "Cinema Collection",
   description: "Discover Fresh Films, Curated by Your Favorite Genres",
 };
 
@@ -16,8 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <>
+      <html lang="en">
+        <head>
+          <script
+            defer
+            src="https://kit.fontawesome.com/5f2bb09986.js"
+            crossOrigin="anonymous"
+          ></script>
+        </head>
+
+        <body className={inter.className}>{children}</body>
+      </html>
+    </>
   );
 }

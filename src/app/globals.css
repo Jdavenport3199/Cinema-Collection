@@ -26,7 +26,6 @@ body {
 .background {
   width: 100vw;
   height: 100dvh;
-  /* min-height: 125dvh; */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -37,7 +36,6 @@ body {
 .background-overlay {
   width: 100vw;
   height: 100dvh;
-  /* min-height: 125dvh; */
   background-size: cover;
   position: fixed;
   top: 0;
@@ -48,7 +46,6 @@ body {
 
 main {
   width: 100vw;
-  /* min-height: 125dvh; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -154,7 +151,6 @@ span {
 .poster-extra {
   display: flex;
   flex-direction: column;
-  /* max-width: 156px; */
   border: 1px solid transparent;
   box-shadow: 0em .2em .8em rgba(0, 0, 0, 0.5);
   cursor: pointer;
@@ -179,7 +175,6 @@ hr {
 .form-holder {
   position: sticky;
   top: 0px;
-  /* right: 0px; */
   z-index: 3;
   padding: 1rem;
   width: 100%;
@@ -196,19 +191,18 @@ form {
 
 .dropdown {
   color: #ffffff;
-  /* background: rgba(255, 255, 255, 0.125);
-  border: 1px solid rgba(255, 255, 255, 0.25); */
   background: rgba(255, 255, 255, 0.176);
   border: 1px solid transparent;
-
   border-radius: 100px;
   padding: .4rem;
-  /* width: 40%; */
   height: 2.5rem;
   margin-bottom: .4rem;
   font-size: 14px;
+  font-weight: 500;
+  text-align: center;
   cursor: pointer;
-  /* backdrop-filter: blur(20px); */
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   transition: linear 150ms;
 }
 
@@ -239,10 +233,10 @@ button {
   transition: linear 150ms;
 }
 
-/* button:hover {
-  background: #0b329e;
+button:hover {
+  opacity: 0.8;
   transition: linear 150ms;
-} */
+}
 
 button:active {
   transition: linear 150ms;
@@ -268,23 +262,14 @@ button:active {
   }
 
   .related-moviegrid {
-    justify-content: space-between;
     gap: 1rem;
   }
-
-  /* .text-holder {
-    margin-top: 8rem;
-  } */
 }
 
 @media (min-width: 999px) {
   .title {
     font-size: 64px;
   }
-
-  /* h1 {
-    font-size: 42px;
-  } */
 
   p {
     font-size: 16px;
