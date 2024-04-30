@@ -304,7 +304,7 @@ export default function Home() {
                     className={styles.btnLandingInverse}
                     onClick={() => scrollTo(trendingDiv)}
                   >
-                    Today's Trending
+                    Today&apos;s Trending
                   </button>
                 </div>
               </div>
