@@ -286,17 +286,25 @@ export default function Home() {
             <div className={styles.contentContainer}>
               <div className={styles.landingContainer}>
                 <div style={{ paddingBottom: "4rem" }}>
-                  <h1 style={{ lineHeight: "1.4" }}>Discover Fresh Films</h1>
+                  <h1 style={{ fontSize: "clamp(64px, 10vw, 120px" }}>
+                    Discover Fresh Films
+                  </h1>
                   <p className={styles.subHeading}>
-                    Curated by your <b>favorite</b> genres.
+                    Find New Films all Curated by your Favorite Genres.
                   </p>
                 </div>
-                <div>
+                <div style={{ display: "flex", gap: "1rem" }}>
                   <button
                     className={styles.btnLanding}
                     onClick={() => scrollTo(movieDiv)}
                   >
-                    View Films
+                    Explore Films
+                  </button>
+                  <button
+                    className={styles.btnLandingInverse}
+                    onClick={() => scrollTo(trendingDiv)}
+                  >
+                    Today's Trending
                   </button>
                 </div>
               </div>
@@ -304,7 +312,7 @@ export default function Home() {
                 className={styles.imgSplash}
                 src={"/movies.png"}
                 width={1920}
-                height={950}
+                height={1080}
                 alt=""
               />
             </div>

@@ -32,7 +32,7 @@
     }
 
     .subHeading {
-        font-size: clamp(16px, 1vw, 20px);
+        font-size: clamp(18px, 2vw, 24px);
     }
 
     .contentContainer {
@@ -41,26 +41,31 @@
         margin: 0rem;
         padding: 0rem;
         justify-content: left;
-        align-items: flex-end;
+        align-items: center;
         height: 89vh;
     }
 
     .landingContainer {
-        margin-bottom: 22rem;
         z-index: 2;
-        /* display: flex; */
-        justify-content: space-between;
-        align-items: flex-end;
         flex-wrap: wrap;
         gap: 2rem;
+        margin-bottom: 8rem;
     }
 
-    .btnLanding {
-        padding: .8rem;
-        padding-left: 1.8rem;
-        padding-right: 1.8rem;
-        font-weight: 500;
-        font-size: 16px;
+    .btnLanding,
+    .btnLandingInverse {
+        padding: 1rem;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    .btnLandingInverse {
+        background: rgba(255, 255, 255, 0.176);
+        color: white;
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
     }
 
     .imgLanding {
@@ -205,13 +210,15 @@
     }
 
     .imgSplash {
-        width: 70%;
+        width: 60%;
+        height: 100vh;
         object-fit: cover;
         position: absolute;
         object-position: top center;
-        right: 0px;
-        -webkit-mask-image: linear-gradient(to right, transparent, black 80%);
-        mask-image: linear-gradient(to right, transparent, black 80%);
+        top: 0;
+        right: 0;
+        -webkit-mask-image: linear-gradient(to right, transparent, black 200%);
+        mask-image: linear-gradient(to right, transparent, black 200%);
         z-index: 0;
     }
 

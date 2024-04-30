@@ -121,6 +121,7 @@ p {
   font-size: 14px;
   font-weight: 400;
   display: inline;
+  line-height: 1.4;
 }
 
 span {
