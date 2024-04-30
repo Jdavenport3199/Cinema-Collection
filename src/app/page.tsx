@@ -290,7 +290,7 @@ export default function Home() {
                     Discover Fresh Films
                   </h1>
                   <p className={styles.subHeading}>
-                    Find New Films all Curated by your Favorite Genres.
+                    Find new films, curated by your favorite genres.
                   </p>
                 </div>
                 <div style={{ display: "flex", gap: "1rem" }}>

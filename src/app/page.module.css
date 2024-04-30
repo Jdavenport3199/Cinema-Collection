@@ -1,6 +1,6 @@
 @media (min-width: 1px) {
     .formHolder {
-        position: sticky;
+        position: absolute;
         top: 0px;
         z-index: 3;
         padding: 1rem;
@@ -42,14 +42,14 @@
         padding: 0rem;
         justify-content: left;
         align-items: center;
-        height: 89vh;
+        height: 100vh;
     }
 
     .landingContainer {
         z-index: 2;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-bottom: 8rem;
+        margin-bottom: 4rem;
     }
 
     .btnLanding,
@@ -57,7 +57,7 @@
         padding: 1rem;
         padding-left: 2rem;
         padding-right: 2rem;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 24px;
     }
 
