@@ -33,6 +33,7 @@
 
     .subHeading {
         font-size: clamp(18px, 2vw, 24px);
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .contentContainer {
@@ -49,7 +50,7 @@
         z-index: 2;
         flex-wrap: wrap;
         gap: 2rem;
-        margin-bottom: 4rem;
+        margin-bottom: 2rem;
     }
 
     .btnLanding,

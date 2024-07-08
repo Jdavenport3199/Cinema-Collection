@@ -286,7 +286,7 @@ export default function Home() {
             <div className={styles.contentContainer}>
               <div className={styles.landingContainer}>
                 <div style={{ paddingBottom: "4rem" }}>
-                  <h1 style={{ fontSize: "clamp(64px, 10vw, 120px" }}>
+                  <h1 style={{ fontSize: "clamp(64px, 10vw, 84px" }}>
                     Discover Fresh Films
                   </h1>
                   <p className={styles.subHeading}>
